@@ -82,21 +82,27 @@ ssh -T git@gitee.com
 
 ---
 
-## 二、安装 Python 环境（没有 Python 的同学先做这步）
+## 二、确认 Python 环境
 
-### 1. 下载 Python
-访问：https://www.python.org/downloads/
-点「**Download Python 3.x.x**」（最新版即可）
+大部分同学应该已经有 Python 了，验证一下即可。
 
-### 2. 安装时勾选 "Add to PATH"
-> ⚠️ **这一步非常重要！** 安装界面底部有一个复选框「**Add Python to PATH**」，**一定要勾上**，然后点「Install Now」。
-
-### 3. 验证安装
-打开 **命令提示符**（Win+R 输入 `cmd` 回车）：
+### 方法一：直接验证
+打开命令提示符（Win+R 输入 `cmd` 回车）或 Git Bash：
 ```bash
 python --version
 ```
-看到 `Python 3.x.x` 就成功了。
+看到 `Python 3.8` 或更高版本就行。
+
+### 方法二：如果你用 Conda
+```bash
+conda --version
+conda activate base   # 激活 base 环境
+python --version
+```
+
+> ⚠️ 如果提示 `python 不是命令`，说明 Python 没加到 PATH。
+> 解决方法：重新安装 Python，安装时勾选「**Add Python to PATH**」。
+> 下载地址：https://www.python.org/downloads/
 
 ---
 
