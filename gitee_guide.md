@@ -77,10 +77,30 @@ ssh -T git@gitee.com
 看到类似 `Hi Zavci! You've successfully authenticated` 就成功了。
 
 > ⚠️ 如果提示 `Permission denied`，说明公钥没加对，回去检查第5步。
+>
+> ⚠️ 如果第一次连接提示 `Are you sure you want to continue connecting (yes/no)?`，输入 `yes` 回车即可（只会出现一次）。
 
 ---
 
-## 二、克隆项目（每人只需做一次）
+## 二、安装 Python 环境（没有 Python 的同学先做这步）
+
+### 1. 下载 Python
+访问：https://www.python.org/downloads/
+点「**Download Python 3.x.x**」（最新版即可）
+
+### 2. 安装时勾选 "Add to PATH"
+> ⚠️ **这一步非常重要！** 安装界面底部有一个复选框「**Add Python to PATH**」，**一定要勾上**，然后点「Install Now」。
+
+### 3. 验证安装
+打开 **命令提示符**（Win+R 输入 `cmd` 回车）：
+```bash
+python --version
+```
+看到 `Python 3.x.x` 就成功了。
+
+---
+
+## 三、克隆项目（每人只需做一次）
 
 > 克隆 = 把远程仓库的代码下载到你电脑上，并建立关联。
 
@@ -146,7 +166,74 @@ git checkout -b feature/你的名字
 
 ---
 
-## 三、日常开发流程
+## 四、用 VS Code 打开项目（推荐）
+
+### 1. 安装 VS Code（如果没装）
+下载地址：https://code.visualstudio.com/
+一路默认安装即可。
+
+### 2. 打开项目
+
+**方法一：命令行**
+```bash
+# 在项目目录下执行
+code .
+```
+
+**方法二：手动打开**
+1. 打开 VS Code
+2. 文件 → 打开文件夹
+3. 选择你 clone 下来的 `process-management` 文件夹
+
+### 3. 安装 Python 扩展（推荐）
+1. VS Code 左侧点「扩展」图标（方块拼图的那个）
+2. 搜索「Python」
+3. 安装第一个「Python」（Microsoft 出品的）
+
+---
+
+## 五、安装项目依赖
+
+克隆下来后，需要安装 Python 依赖包才能运行项目。
+
+```bash
+# 确保你在项目目录下
+cd process-management
+
+# 安装依赖
+pip install -r requirements.txt
+```
+
+如果提示 `pip` 不是命令，试试：
+```bash
+python -m pip install -r requirements.txt
+```
+
+---
+
+## 六、验证一切正常
+
+运行以下命令，确认环境没问题：
+
+```bash
+# 检查 Python
+python --version
+
+# 检查 Git
+git version
+
+# 检查 SSH 连接
+ssh -T git@gitee.com
+
+# 检查项目文件
+ls
+```
+
+四条命令都没报错，环境就配好了！🎉
+
+---
+
+## 七、日常开发流程
 
 ### 每天开始工作前
 ```bash
@@ -204,7 +291,7 @@ git commit -m "merge: 同步 main 最新代码"
 
 ---
 
-## 四、分支命名规范
+## 八、分支命名规范
 
 | 角色 | 分支名 |
 |------|--------|
@@ -216,7 +303,7 @@ git commit -m "merge: 同步 main 最新代码"
 
 ---
 
-## 五、提交信息规范
+## 九、提交信息规范
 
 格式：`类型: 简短描述`
 
@@ -230,7 +317,7 @@ git commit -m "merge: 同步 main 最新代码"
 
 ---
 
-## 六、常用命令速查
+## 十、常用命令速查
 
 | 操作 | 命令 |
 |------|------|
@@ -250,7 +337,7 @@ git commit -m "merge: 同步 main 最新代码"
 
 ---
 
-## 七、常见问题
+## 十一、常见问题
 
 ### Q: push 被拒绝了怎么办？
 ```bash
@@ -297,7 +384,7 @@ git commit -m "去掉大文件"
 
 ---
 
-## 八、每日工作流（总结）
+## 十二、每日工作流（总结）
 
 ```
 早上：
