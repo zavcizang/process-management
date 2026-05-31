@@ -398,10 +398,10 @@ git commit -m "去掉大文件"
 
 ```
 早上：
-  git checkout main
-  git pull origin main
+  git checkout master
+  git pull origin master
   git checkout feature/你的名字
-  git merge main
+  git merge master
 
 白天：
   写代码...
@@ -412,3 +412,26 @@ git commit -m "去掉大文件"
   git push
   群里通知："我的代码已推送，请求合并"
 ```
+
+### 为什么要 `git merge master`？
+
+你每天写代码时，别人也在写代码并合并到 master。如果你不 merge，你的分支会落后：
+
+```
+master:     A ── B ── C (最新)
+                  ↑
+你的分支:   A ── (落后了，在这继续写 D、E)
+```
+
+最后合并到 master 时，B 的代码和你的代码冲突，要手动解决。
+
+**每天 merge master：**
+
+```
+你的分支:   A ── B ── C (和 master 同步)
+                  ↑ 继续写 D、E
+```
+
+冲突少，容易解决。
+
+> 💡 **建议：每天开工第一件事就是 `git merge master`，保持和最新代码同步。**
