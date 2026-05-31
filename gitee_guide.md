@@ -1,40 +1,82 @@
 # Gitee 使用指南 — 团队成员必读
 
+> 📌 本指南面向零 Git 经验的同学，按顺序操作即可。
+
+---
+
+## 〇、注册 Gitee 账号（没有账号的同学先做这步）
+
+### 1. 打开注册页面
+浏览器访问：https://gitee.com/signup
+
+### 2. 填写注册信息
+- **手机号/邮箱**：用你常用的邮箱
+- **用户名**：建议用英文，比如 `zhangsan`（以后代码里显示的就是这个名字）
+- **密码**：设一个你能记住的
+- 完成验证码 → 点击"注册"
+
+### 3. 验证邮箱
+去你的邮箱收一封来自 Gitee 的验证邮件，点里面的链接完成验证。
+
+### 4. 告诉我你的用户名
+注册完成后，把你的 **Gitee 用户名** 发给我（架构师），我把你加到项目仓库里。
+
+### 5. 确认你已被添加
+登录 Gitee → 右上角头像 → 「我加入的」→ 应该能看到 `process-management` 这个项目。
+
+---
+
 ## 一、首次配置（每人只需做一次）
 
 ### 1. 安装 Git
-Windows 下载：https://git-scm.com/download/win
-安装时一路默认即可。
 
-### 2. 配置身份
-打开 Git Bash，执行：
+Windows 下载：https://git-scm.com/download/win
+
+安装时：
+- 选默认编辑器时，选 **Use Visual Studio Code**（或你习惯的编辑器）
+- 其他全部点 **Next**，一路默认即可
+- 安装完成后，右键桌面 → 出现「Git Bash Here」就成功了
+
+### 2. 打开 Git Bash
+
+方法一：右键桌面/文件夹空白处 → 「Git Bash Here」
+方法二：开始菜单搜索「Git Bash」打开
+
+**以下所有命令都在 Git Bash 里执行。**
+
+### 3. 配置身份
 ```bash
-git config --global user.name "你的名字"
-git config --global user.email "你的邮箱"
+git config --global user.name "你的名字（拼音或英文）"
+git config --global user.email "你注册Gitee用的邮箱"
 ```
 
-### 3. 生成 SSH 密钥
+### 4. 生成 SSH 密钥
 ```bash
 ssh-keygen -t ed25519 -C "你的邮箱"
-# 一路回车，不要设密码
 ```
+出现提示一路按 **回车**（Enter），不要设密码。
 
-### 4. 复制公钥
+### 5. 复制公钥
 ```bash
 cat ~/.ssh/id_ed25519.pub
-# 复制输出的整行内容
 ```
+会输出一行很长的内容，**全部复制**（鼠标选中 → 右键 → Copy）。
 
-### 5. 添加到 Gitee
+### 6. 添加到 Gitee
 1. 登录 gitee.com
-2. 右上角头像 → 设置 → SSH公钥
-3. 粘贴公钥 → 确定
+2. 右上角头像 → **设置**（不是"个人主页"）
+3. 左侧菜单 → **SSH公钥**
+4. 「公钥」框里 **粘贴** 刚才复制的内容
+5. 标题随便写（比如"我的电脑"）
+6. 点 **确定**
 
-### 6. 验证连接
+### 7. 验证连接
 ```bash
 ssh -T git@gitee.com
-# 看到 "Hi xxx! You've successfully authenticated" 就成功了
 ```
+看到类似 `Hi Zavci! You've successfully authenticated` 就成功了。
+
+> ⚠️ 如果提示 `Permission denied`，说明公钥没加对，回去检查第5步。
 
 ---
 
