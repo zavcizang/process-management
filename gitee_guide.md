@@ -82,12 +82,67 @@ ssh -T git@gitee.com
 
 ## 二、克隆项目（每人只需做一次）
 
+> 克隆 = 把远程仓库的代码下载到你电脑上，并建立关联。
+
+### 1. 选一个放代码的目录
+
+比如你想把代码放在 `D:\python` 下面：
+
 ```bash
-# 选择一个目录，比如 D:\python
-cd D:\python
+# 先进入你想放代码的目录
+cd /d/python
+```
+
+> 💡 不知道怎么进？
+> - 在你想放代码的文件夹空白处 **右键** → 「Git Bash Here」
+> - 这样就自动在这个目录下了，不用手动 cd
+
+### 2. 克隆仓库
+
+```bash
 git clone git@gitee.com:zjh3432512933/process-management.git
+```
+
+会看到类似输出：
+```
+Cloning into 'process-management'...
+remote: Enumerating objects: 10, done.
+remote: Counting objects: 100% (10/10), done.
+Receiving objects: 100% (10/10), done.
+```
+
+### 3. 进入项目目录
+
+```bash
 cd process-management
 ```
+
+### 4. 确认成功
+
+```bash
+ls
+```
+
+应该看到这些文件：
+```
+README.md  collaboration.md  gitee_guide.md  plan.md  requirements.txt
+```
+
+### 5. 创建你自己的分支
+
+```bash
+# 创建并切换到你的分支（把 "你的名字" 换成你的拼音，比如 zhangsan）
+git checkout -b feature/你的名字
+```
+
+看到 `Switched to a new branch 'feature/xxx'` 就成功了。
+
+> ⚠️ **如果第2步报错** `Permission denied`：
+> - 说明 SSH 密钥没配好，回到「一、首次配置」的第5步检查
+> - 或者用 HTTPS 方式克隆（不需要SSH密钥，但每次要输密码）：
+>   ```bash
+>   git clone https://gitee.com/zjh3432512933/process-management.git
+>   ```
 
 ---
 
