@@ -59,6 +59,11 @@ class OSShell:
             'q': self._cmd_quit,
             'demo': self._cmd_demo,
             'chart': self._cmd_chart,
+            'pipe': self._cmd_pipe,
+            'write': self._cmd_write,
+            'read': self._cmd_read,
+            'dmesg': self._cmd_dmesg,
+            'fd': self._cmd_fd,
         }
 
     def run(self):
@@ -320,26 +325,98 @@ class OSShell:
             chart.plot_stride_fairness(self._kernel.get_all_processes())
         elif chart_type == 'switch':
             chart.plot_context_switches(self._kernel)
+        elif chart_type == 'mapping':
+            chart.plot_memory_mapping(self._kernel)
         else:
-            print("可用图表: all, gantt, cpu, memory, stride, switch")
+            print("可用图表: all, gantt, cpu, memory, stride, switch, mapping")
+
+    def _cmd_pipe(self, args: list):
+        """pipe — 创建管道"""
+        read_fd, write_fd = self._kernel.ipc_manager.create_pipe(self._current_pid)
+        print(f"管道已创建: read_fd={read_fd}, write_fd={write_fd}")
+
+    def _cmd_write(self, args: list):
+        """write <fd> <data> — 写入管道"""
+        if len(args) < 2:
+            print("用法: write <fd> <data>")
+            return
+
+        fd = int(args[0])
+        data = ' '.join(args[1:]).encode('utf-8')
+
+        try:
+            bytes_written = self._kernel.ipc_manager.write(fd, data)
+            print(f"写入 {bytes_written} 字节: {data.decode('utf-8')}")
+        except Exception as e:
+            print(f"写入失败: {e}")
+
+    def _cmd_read(self, args: list):
+        """read <fd> [size] — 读取管道"""
+        if not args:
+            print("用法: read <fd> [size]")
+            return
+
+        fd = int(args[0])
+        size = int(args[1]) if len(args) > 1 else 1024
+
+        try:
+            data = self._kernel.ipc_manager.read(fd, size)
+            if data:
+                print(f"读取 {len(data)} 字节: {data.decode('utf-8')}")
+            else:
+                print("管道为空")
+        except Exception as e:
+            print(f"读取失败: {e}")
+
+    def _cmd_dmesg(self, args: list):
+        """dmesg — 查看内核日志"""
+        last_n = int(args[0]) if args else 0
+        print(self._kernel.dmesg(last_n))
+
+    def _cmd_fd(self, args: list):
+        """fd [pid] — 查看进程文件描述符"""
+        pid = int(args[0]) if args else self._current_pid
+        fds = self._kernel.ipc_manager.get_process_fds(pid)
+
+        if not fds:
+            print(f"进程 {pid} 没有打开的文件描述符")
+            return
+
+        print(f"\n进程 {pid} 的文件描述符:")
+        print(f"  {'FD':<6} {'类型':<6} {'管道ID':<8} {'缓冲区':<8}")
+        print("  " + "-" * 30)
+
+        for fd, info in sorted(fds.items()):
+            mode_str = "读" if info['mode'] == 'r' else "写"
+            print(f"  {fd:<6} {mode_str:<6} {info['pipe_id']:<8} {info['pipe_size']:<8}")
 
     def _cmd_help(self, args: list):
         """help — 显示帮助"""
         print("\n可用命令:")
+        print("  --- 进程管理 ---")
         print("  fork [name]         创建子进程")
         print("  wait [pid]          等待子进程退出（-1=任意）")
         print("  exit [code]         终止当前进程")
         print("  pid                 显示当前进程 PID")
         print("  ps                  列出所有进程")
         print("  tree                显示进程树")
+        print("  stat [pid]          显示进程统计信息")
+        print("  kill <pid>          强制杀死进程")
+        print("  --- IPC（管道通信）---")
+        print("  pipe                创建管道")
+        print("  write <fd> <data>   写入管道")
+        print("  read <fd> [size]    读取管道")
+        print("  fd [pid]            查看文件描述符")
+        print("  --- 调度和内存 ---")
         print("  sched               显示调度队列状态")
         print("  mem                 显示内存页表")
         print("  nice <pid> <pri>    调整优先级")
-        print("  stat [pid]          显示进程统计信息")
-        print("  kill <pid>          强制杀死进程")
+        print("  --- 工具 ---")
         print("  tick [n]            推进 n 个时钟周期")
+        print("  dmesg               查看内核日志")
+        print("  chart [type]        生成图表 (all/gantt/cpu/memory/stride/switch/mapping)")
         print("  demo <name>         运行演示脚本")
-        print("  chart [type]        生成 matplotlib 图表 (all/gantt/cpu/memory/stride/switch)")
+        print("  --- 系统 ---")
         print("  help                显示帮助")
         print("  quit / q            退出模拟器")
 

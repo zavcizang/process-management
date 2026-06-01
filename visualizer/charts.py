@@ -374,6 +374,86 @@ class ChartGenerator:
         print(f"[图表] 上下文切换图已保存: {output_path}")
         return output_path
 
+    def plot_memory_mapping(self, kernel, filename: str = 'memory_mapping.png') -> Optional[str]:
+        """
+        生成内存映射可视化图。
+
+        展示虚拟页 → 物理帧的映射关系，以及 COW 共享状态。
+
+        Args:
+            kernel: 内核实例
+            filename: 输出文件名
+
+        Returns:
+            图表文件路径
+        """
+        if not HAS_MATPLOTLIB:
+            print("[提示] 未安装 matplotlib，跳过图表生成")
+            return None
+
+        processes = kernel.get_all_processes()
+        user_processes = {pid: pcb for pid, pcb in processes.items()
+                         if pid != 0 and pcb.page_table}
+
+        if not user_processes:
+            print("[提示] 无用户进程页表，跳过内存映射图")
+            return None
+
+        # 创建图表
+        n_procs = len(user_processes)
+        fig, axes = plt.subplots(1, n_procs, figsize=(6 * n_procs, 6))
+        if n_procs == 1:
+            axes = [axes]
+
+        for ax, (pid, pcb) in zip(axes, user_processes.items()):
+            entries = pcb.page_table.get_all_entries()
+
+            # 绘制虚拟页 → 物理帧的映射
+            for page_num, entry in sorted(entries.items()):
+                # 虚拟页位置（左侧）
+                ax.barh(page_num, 0.3, left=0, height=0.6, color='#3498db',
+                       edgecolor='black', linewidth=1)
+                ax.text(0.15, page_num, f'VP{page_num}', ha='center', va='center',
+                       fontsize=10, fontweight='bold', color='white')
+
+                # 箭头连接
+                ax.annotate('', xy=(1.7, page_num), xytext=(0.3, page_num),
+                           arrowprops=dict(arrowstyle='->', color='#7f8c8d', lw=2))
+
+                # 物理帧位置（右侧）
+                frame_color = '#e74c3c' if entry.ref_count > 1 else '#2ecc71'
+                ax.barh(entry.frame_id, 0.3, left=1.7, height=0.6, color=frame_color,
+                       edgecolor='black', linewidth=1)
+                ax.text(1.85, entry.frame_id, f'PF{entry.frame_id}', ha='center', va='center',
+                       fontsize=10, fontweight='bold', color='white')
+
+            # 标注
+            ax.set_xlim(-0.5, 2.5)
+            ax.set_ylim(-0.5, max(4, max(entries.keys()) + 1) if entries else 4)
+            ax.set_yticks(range(max(4, max(entries.keys()) + 1) if entries else 4))
+            ax.set_yticklabels([f'页{i}' for i in range(max(4, max(entries.keys()) + 1) if entries else 4)])
+            ax.set_xticks([0.15, 1.85])
+            ax.set_xticklabels(['虚拟页', '物理帧'])
+            ax.set_title(f'进程 P{pid} ({pcb.name})\n内存映射', fontsize=12, fontweight='bold')
+            ax.grid(axis='y', alpha=0.3)
+
+        # 图例
+        legend_patches = [
+            mpatches.Patch(color='#3498db', label='虚拟页'),
+            mpatches.Patch(color='#2ecc71', label='物理帧 (独占)'),
+            mpatches.Patch(color='#e74c3c', label='物理帧 (COW共享)'),
+        ]
+        fig.legend(handles=legend_patches, loc='lower center', ncol=3,
+                  fontsize=11, bbox_to_anchor=(0.5, -0.05))
+
+        fig.suptitle('COW 内存映射可视化', fontsize=16, fontweight='bold', y=1.02)
+        plt.tight_layout()
+        output_path = os.path.join(self._output_dir, filename)
+        plt.savefig(output_path, dpi=150, bbox_inches='tight')
+        plt.close()
+        print(f"[图表] 内存映射图已保存: {output_path}")
+        return output_path
+
     def plot_all(self, kernel) -> List[str]:
         """
         生成所有图表。

@@ -83,6 +83,9 @@ class SyscallHandler:
                 child_page_table = self._kernel.memory_manager.fork_page_table(parent.page_table)
                 child.page_table = child_page_table
 
+            # 复制文件描述符（IPC）
+            self._kernel.ipc_manager.fork_pipe(parent_pid, child_pid)
+
             return child_pid
 
         except RuntimeError:

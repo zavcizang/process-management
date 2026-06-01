@@ -8,6 +8,8 @@ kernel.py — 内核核心
 - ProcessTree: 进程树（父子关系）
 - StrideScheduler: Stride 调度器
 - COWManager: COW 内存管理
+- IPCManager: 进程间通信（管道）
+- KernelLogger: 内核日志
 - SyscallHandler: 系统调用处理
 
 设计原则：
@@ -23,6 +25,8 @@ from core.process_tree import ProcessTree
 from kernel.process_manager import ProcessManager
 from kernel.scheduler import StrideScheduler
 from kernel.memory_manager import FrameManager, COWManager
+from kernel.ipc import IPCManager
+from kernel.logger import KernelLogger
 from syscall.syscall import SyscallHandler
 from error_codes import ErrorCode
 
@@ -46,11 +50,13 @@ class Kernel:
             kernel.tick()
     """
 
-    def __init__(self, max_processes: int = 64, total_frames: int = 256):
+    def __init__(self, max_processes: int = 64, total_frames: int = 256,
+                 enable_logging: bool = True):
         """
         Args:
             max_processes: 最大进程数
             total_frames: 物理内存帧数（默认 256 帧 = 1MB）
+            enable_logging: 是否启用内核日志
         """
         # 初始化子系统
         self._tree = ProcessTree()
@@ -58,6 +64,8 @@ class Kernel:
         self._frame_manager = FrameManager(total_frames=total_frames)
         self._cow_manager = COWManager(self._frame_manager)
         self._process_manager = ProcessManager(max_processes=max_processes)
+        self._ipc_manager = IPCManager()
+        self._logger = KernelLogger(enabled=enable_logging)
 
         # 绑定子系统
         self._process_manager.bind(self._tree, self._scheduler, self._cow_manager)
@@ -113,13 +121,26 @@ class Kernel:
         """系统调用处理器"""
         return self._syscall
 
+    @property
+    def ipc_manager(self) -> IPCManager:
+        """IPC 管理器"""
+        return self._ipc_manager
+
+    @property
+    def logger(self) -> KernelLogger:
+        """内核日志"""
+        return self._logger
+
     def create_process(self, name: str, parent_pid: int = 0,
                        priority: int = 128) -> int:
         """创建新进程"""
-        return self._process_manager.create_process(name, parent_pid, priority)
+        pid = self._process_manager.create_process(name, parent_pid, priority)
+        self._logger.log_create(pid, name, parent_pid)
+        return pid
 
     def destroy_process(self, pid: int) -> None:
         """销毁进程"""
+        self._logger.log_destroy(pid, "reaped")
         self._process_manager.destroy_process(pid)
 
     def get_process(self, pid: int) -> Optional[PCB]:
@@ -222,6 +243,22 @@ class Kernel:
     def get_context_switch_history(self) -> list:
         """获取上下文切换历史"""
         return self._context_switch_history.copy()
+
+    def dmesg(self, last_n: int = 0) -> str:
+        """
+        输出内核日志（类似 Linux dmesg 命令）。
+
+        Args:
+            last_n: 只输出最后 N 条（0=全部）
+
+        Returns:
+            日志字符串
+        """
+        return self._logger.dump(last_n)
+
+    def get_log_summary(self) -> dict:
+        """获取日志统计摘要"""
+        return self._logger.get_summary()
 
     def __repr__(self) -> str:
         return f"Kernel(tick={self._tick_count}, processes={self._process_manager.get_process_count()})"
