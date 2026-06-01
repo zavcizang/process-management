@@ -58,6 +58,7 @@ class OSShell:
             'quit': self._cmd_quit,
             'q': self._cmd_quit,
             'demo': self._cmd_demo,
+            'chart': self._cmd_chart,
         }
 
     def run(self):
@@ -299,6 +300,29 @@ class OSShell:
         else:
             print("可用演示: basic, cow, stride, zombie, orphan")
 
+    def _cmd_chart(self, args: list):
+        """chart [type] — 生成 matplotlib 图表"""
+        from visualizer.charts import ChartGenerator
+
+        chart = ChartGenerator(output_dir='output')
+
+        chart_type = args[0] if args else 'all'
+
+        if chart_type == 'all':
+            chart.plot_all(self._kernel)
+        elif chart_type == 'gantt':
+            chart.plot_gantt(self._kernel)
+        elif chart_type == 'cpu':
+            chart.plot_cpu_utilization(self._kernel)
+        elif chart_type == 'memory':
+            chart.plot_memory_usage(self._kernel)
+        elif chart_type == 'stride':
+            chart.plot_stride_fairness(self._kernel.get_all_processes())
+        elif chart_type == 'switch':
+            chart.plot_context_switches(self._kernel)
+        else:
+            print("可用图表: all, gantt, cpu, memory, stride, switch")
+
     def _cmd_help(self, args: list):
         """help — 显示帮助"""
         print("\n可用命令:")
@@ -315,8 +339,9 @@ class OSShell:
         print("  kill <pid>          强制杀死进程")
         print("  tick [n]            推进 n 个时钟周期")
         print("  demo <name>         运行演示脚本")
+        print("  chart [type]        生成 matplotlib 图表 (all/gantt/cpu/memory/stride/switch)")
         print("  help                显示帮助")
-        print("  quit                退出模拟器")
+        print("  quit / q            退出模拟器")
 
     def _cmd_quit(self, args: list):
         """quit — 退出模拟器"""
