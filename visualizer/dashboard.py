@@ -8,7 +8,7 @@ from typing import Dict, Optional
 from core.pcb import PCB, ProcessState
 from kernel.kernel import Kernel
 from visualizer.tree_view import visualize_tree_with_status, get_process_summary
-from visualizer.scheduler_view import visualize_queue_snapshot, visualize_cpu_utilization
+from visualizer.scheduler_view import visualize_queue_snapshot, visualize_cpu_utilization, visualize_context_switches
 from visualizer.memory_view import visualize_frame_map, visualize_memory_stats
 
 
@@ -48,6 +48,11 @@ def show_dashboard(kernel: Kernel) -> str:
         visualize_cpu_utilization(
             [],  # 暂无历史
             stats['tick_count']
+        ),
+        "",
+        visualize_context_switches(
+            kernel.get_context_switch_history(),
+            processes
         ),
         "=" * 60,
     ]

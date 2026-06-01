@@ -123,3 +123,37 @@ def visualize_cpu_utilization(history: List[Tuple[int, Optional[int]]],
     ]
 
     return "\n".join(lines)
+
+
+def visualize_context_switches(history: List[Tuple[int, int, int]],
+                               processes: Dict[int, PCB]) -> str:
+    """
+    可视化上下文切换历史。
+
+    Args:
+        history: [(tick, old_pid, new_pid), ...]
+        processes: 进程字典
+
+    Returns:
+        上下文切换可视化字符串
+    """
+    if not history:
+        return "上下文切换: 无"
+
+    lines = [
+        f"上下文切换历史 (共 {len(history)} 次):",
+        f"  {'Tick':<8} {'从':<15} {'到':<15}",
+        "  " + "-" * 40,
+    ]
+
+    # 只显示最近的 10 次
+    recent = history[-10:] if len(history) > 10 else history
+    for tick, old_pid, new_pid in recent:
+        old_name = processes[old_pid].name if old_pid and old_pid in processes else "空闲"
+        new_name = processes[new_pid].name if new_pid in processes else "未知"
+        lines.append(f"  {tick:<8} {old_name}({old_pid}){'':<5} {new_name}({new_pid})")
+
+    if len(history) > 10:
+        lines.append(f"  ... (还有 {len(history) - 10} 条记录)")
+
+    return "\n".join(lines)

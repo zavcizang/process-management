@@ -18,7 +18,6 @@
 | **COW 写时复制** | 引用计数 + 脏页追踪 + 按需复制，fork 时零内存拷贝 |
 | **Stride 调度** | 基于 Linux CFS 的公平调度算法，有严格的数学公平性证明 |
 | **级联退出** | 完整的三阶段退出协议，含孤儿进程自动回收 |
-| **智能页面置换** | LFU + 访问时间的双因子策略，动态调整权重 |
 | **实时可视化** | 进程树 + 甘特图 + 内存页表三合一动画 |
 
 ## 快速开始
@@ -35,7 +34,7 @@
 git clone git@gitee.com:zjh3432512933/process-management.git
 cd process-management
 
-# 安装依赖
+# 安装依赖（可选，本项目无外部依赖）
 pip install -r requirements.txt
 ```
 
@@ -45,6 +44,9 @@ pip install -r requirements.txt
 # 交互式 Shell
 python main.py
 
+# 运行所有测试
+python main.py --test
+
 # 运行演示
 python demos/basic_fork.py
 python demos/cow_demo.py
@@ -53,55 +55,59 @@ python demos/zombie_demo.py
 python demos/orphan_demo.py
 ```
 
-### 测试
-
-```bash
-python -m pytest tests/ -v
-```
-
 ## 项目结构
 
 ```
 process_management/
 ├── core/                        # 数据结构层
+│   ├── __init__.py
 │   ├── pcb.py                  # PCB 进程控制块
-│   ├── page_table.py           # 页表和页表项
-│   ├── process_tree.py         # 进程树（父子关系）
-│   └── virtual_memory.py       # 虚拟内存管理
+│   └── process_tree.py         # 进程树（父子关系）
 │
 ├── kernel/                      # 内核核心层
-│   ├── process_manager.py      # 进程创建/销毁/状态转换
+│   ├── __init__.py
+│   ├── kernel.py               # 内核核心（整合所有子系统）
 │   ├── memory_manager.py       # COW 内存管理 + 帧分配
-│   ├── scheduler.py            # Stride 调度器
-│   └── resource_reaper.py      # 资源回收器（僵尸清理）
+│   ├── process_manager.py      # 进程创建/销毁/状态转换
+│   └── scheduler.py            # Stride 调度器
 │
 ├── syscall/                     # 系统调用层
-│   └── syscall.py              # sys_fork, sys_waitpid, sys_exit, sys_getpid
+│   ├── __init__.py
+│   └── syscall.py              # fork/exit/waitpid/getpid/setpriority/yield
 │
 ├── visualizer/                  # 可视化引擎
-│   ├── tree_view.py            # 进程树可视化
-│   ├── scheduler_view.py       # 调度甘特图
+│   ├── __init__.py
+│   ├── dashboard.py            # 实时仪表盘
 │   ├── memory_view.py          # 内存页表可视化
-│   └── dashboard.py            # 实时仪表盘
+│   ├── scheduler_view.py       # 调度甘特图
+│   └── tree_view.py            # 进程树可视化
 │
 ├── demos/                       # 演示脚本
+│   ├── __init__.py
 │   ├── basic_fork.py           # 基础 fork/wait 演示
 │   ├── cow_demo.py             # COW 写时复制演示
-│   ├── stride_demo.py          # Stride 调度公平性演示
-│   ├── zombie_demo.py          # 僵尸进程演示
 │   ├── orphan_demo.py          # 孤儿进程回收演示
-│   └── race_condition.py       # 竞态条件演示
+│   ├── stride_demo.py          # Stride 调度公平性演示
+│   └── zombie_demo.py          # 僵尸进程演示
 │
-├── tests/                       # 测试
-│   ├── test_fork.py
-│   ├── test_cow.py
-│   ├── test_scheduler.py
-│   └── test_process_tree.py
+├── tests/                       # 测试（40+ 测试用例）
+│   ├── __init__.py
+│   ├── test_kernel.py          # 内核集成测试
+│   ├── test_memory.py          # 内存管理器测试
+│   ├── test_pcb.py             # PCB 单元测试
+│   ├── test_process_tree.py    # 进程树测试
+│   ├── test_scheduler.py       # 调度器测试
+│   └── test_visualizer.py      # 可视化测试
 │
 ├── main.py                      # 主程序入口
 ├── interactive.py               # 交互式 Shell
-├── interfaces.py                # 接口定义（所有人必须遵循）
-└── error_codes.py               # 错误码定义
+├── interfaces.py                # 接口定义（Protocol）
+├── error_codes.py               # 错误码定义
+├── requirements.txt             # Python 依赖
+├── README.md                    # 本文件
+├── plan.md                      # 技术方案
+├── collaboration.md             # 团队协作指南
+└── gitee_guide.md               # Gitee 使用指南
 ```
 
 ## 交互式命令
@@ -116,9 +122,10 @@ tree                - 显示进程树
 sched               - 显示调度队列状态
 mem                 - 显示内存页表
 nice [pid] [val]    - 调整优先级
-demo [name]         - 运行演示脚本
 stat [pid]          - 显示进程统计信息
 kill [pid]          - 强制杀死进程
+tick [n]            - 推进 n 个时钟周期
+demo [name]         - 运行演示脚本
 help                - 显示帮助
 quit                - 退出模拟器
 ```
@@ -132,32 +139,51 @@ fork 时：
   父进程页表 → [帧0, 帧1, 帧2]
   子进程页表 → [帧0, 帧1, 帧2]  ← 共享同一份物理内存
   帧0 引用计数 = 2
-  帧1 引用计数 = 2
-  帧2 引用计数 = 2
   总物理内存 = 12KB（而不是 24KB）
 
 子进程写入帧0 时：
   触发 COW → 复制帧0 → 帧3
   子进程页表 → [帧3, 帧1, 帧2]
   帧0 引用计数 = 1
-  帧3 引用计数 = 1
   总物理内存 = 16KB（只多了 4KB）
 ```
 
 ### Stride 调度
 
 ```
-BIG_STRIDE = 1,000,000
-stride = BIG_STRIDE / priority
+stride = BIG_STRIDE / (256 - priority)
 
-进程A: priority=10 → stride=100,000
-进程B: priority=5  → stride=200,000
+进程A: priority=10  → stride=4065（小步长，多CPU）
+进程B: priority=133 → stride=8130（大步长，少CPU）
 
 调度规则：选 pass_value 最小的进程运行
 运行后：pass_value += stride
 
-结果：A 获得 2x CPU 时间（priority 比例 2:1）
+结果：A 获得 50% CPU，B 获得 25% CPU（2:1 比例）
 ```
+
+### 级联退出
+
+```
+进程树：init → A → B → C
+
+A 退出时：
+  1. A 状态变为 ZOMBIE
+  2. B 成为孤儿，重新挂到 init 下
+  3. C 的父进程仍然是 B
+  4. 如果 A 的父进程在 wait，唤醒它
+```
+
+## 测试覆盖
+
+| 测试文件 | 测试内容 | 测试数量 |
+|----------|----------|----------|
+| test_pcb.py | PCB 创建、状态转换、reset | 6 |
+| test_process_tree.py | 进程树、孤儿回收、可视化 | 10 |
+| test_scheduler.py | Stride 调度、公平性、溢出 | 7 |
+| test_memory.py | COW、帧分配、引用计数 | 8 |
+| test_kernel.py | 内核集成、fork+waitpid、级联退出 | 9 |
+| test_visualizer.py | 可视化组件 | 8 |
 
 ## 开发团队
 

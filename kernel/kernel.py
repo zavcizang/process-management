@@ -71,6 +71,9 @@ class Kernel:
         # 系统时钟
         self._tick_count = 0
 
+        # 上下文切换历史：[(tick, old_pid, new_pid), ...]
+        self._context_switch_history: list = []
+
         # 创建 init 进程（PID=0）
         self._create_init_process()
 
@@ -154,6 +157,10 @@ class Kernel:
                 if old_pcb and old_pcb.state == ProcessState.RUNNING:
                     old_pcb.set_state(ProcessState.READY)
 
+            # 记录上下文切换（如果进程发生变化）
+            if old_pid != next_pid:
+                self._context_switch_history.append((self._tick_count, old_pid, next_pid))
+
             # 将新进程设为 RUNNING
             new_pcb = self._process_manager.get_process(next_pid)
             if new_pcb:
@@ -206,10 +213,15 @@ class Kernel:
         return {
             'tick_count': self._tick_count,
             'current_pid': self._current_pid,
+            'context_switches': len(self._context_switch_history),
             'processes': self._process_manager.get_stats(),
             'scheduler': self._scheduler.get_stats(),
             'memory': self._frame_manager.get_stats(),
         }
+
+    def get_context_switch_history(self) -> list:
+        """获取上下文切换历史"""
+        return self._context_switch_history.copy()
 
     def __repr__(self) -> str:
         return f"Kernel(tick={self._tick_count}, processes={self._process_manager.get_process_count()})"
