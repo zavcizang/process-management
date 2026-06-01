@@ -44,6 +44,7 @@ def run_tests():
         'test_scheduler.py',
         'test_memory.py',
         'test_kernel.py',
+        'test_visualizer.py',
     ]
 
     print("运行所有测试...\n")
