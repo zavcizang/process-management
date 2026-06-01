@@ -70,6 +70,9 @@ python demos/zombie_demo.py
 
 # 孤儿进程回收演示
 python demos/orphan_demo.py
+
+# 管道 IPC 通信演示
+python demos/pipe_demo.py
 ```
 
 ### 2.3 运行测试
@@ -249,6 +252,61 @@ PID      pass_value   优先级
 [PID:0] os> demo stride
 [PID:0] os> demo zombie
 [PID:0] os> demo orphan
+[PID:0] os> demo pipe
+```
+
+### 3.5 IPC 管道通信命令
+
+#### pipe — 创建管道
+
+```
+[PID:0] os> pipe
+管道已创建: read_fd=3, write_fd=4
+```
+
+#### write <fd> <data> — 写入管道
+
+```
+[PID:0] os> write 4 Hello World
+写入 11 字节: Hello World
+```
+
+#### read <fd> [size] — 读取管道
+
+```
+[PID:0] os> read 3
+读取 11 字节: Hello World
+```
+
+#### fd [pid] — 查看文件描述符
+
+```
+[PID:0] os> fd
+
+进程 0 的文件描述符:
+  FD     类型   管道ID   缓冲区
+  ------------------------------
+  3      读     0        11
+  4      写     0        0
+```
+
+### 3.6 内核日志命令
+
+#### dmesg — 查看内核日志
+
+```
+[PID:0] os> dmesg
+============================================================
+内核日志 (dmesg)
+============================================================
+[T=   0] CREATE     pid=   0 name=init parent=-1
+[T=   1] CREATE     pid=   1 name=shell parent=0
+[T=   2] FORK       pid=   1 → pid=2
+[T=   3] SCHEDULE   pid=   2 from=1
+...
+============================================================
+共 15 条日志
+============================================================
 ```
 
 ---

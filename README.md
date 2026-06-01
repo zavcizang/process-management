@@ -4,12 +4,18 @@
 
 ## 项目简介
 
-一个用户态的进程管理模拟器，实现了完整的进程生命周期管理：
+一个进程管理内核模拟器，实现了完整的进程生命周期管理和进程间通信：
 
+### 核心系统调用
 - **fork** — 基于写时复制（COW）的进程创建
 - **waitpid** — 子进程回收与阻塞等待
 - **exit** — 级联退出与孤儿进程回收
 - **getpid** — 进程标识查询
+
+### 扩展功能
+- **pipe** — 管道进程间通信（IPC）
+- **dmesg** — 内核日志系统
+- **Stride 调度** — 基于 Linux CFS 的公平调度算法
 
 ### 核心创新
 
@@ -18,7 +24,9 @@
 | **COW 写时复制** | 引用计数 + 脏页追踪 + 按需复制，fork 时零内存拷贝 |
 | **Stride 调度** | 基于 Linux CFS 的公平调度算法，有严格的数学公平性证明 |
 | **级联退出** | 完整的三阶段退出协议，含孤儿进程自动回收 |
-| **实时可视化** | 进程树 + 甘特图 + 内存页表三合一动画 |
+| **管道 IPC** | 父子进程通过管道通信，支持文件描述符继承 |
+| **内核日志** | 记录所有内核操作，支持 dmesg 命令回放 |
+| **实时可视化** | 进程树 + 甘特图 + 内存映射 + 上下文切换时间线 |
 
 ## 快速开始
 
@@ -53,6 +61,7 @@ python demos/cow_demo.py
 python demos/stride_demo.py
 python demos/zombie_demo.py
 python demos/orphan_demo.py
+python demos/pipe_demo.py
 ```
 
 ## 项目结构
@@ -69,14 +78,17 @@ process_management/
 │   ├── kernel.py               # 内核核心（整合所有子系统）
 │   ├── memory_manager.py       # COW 内存管理 + 帧分配
 │   ├── process_manager.py      # 进程创建/销毁/状态转换
-│   └── scheduler.py            # Stride 调度器
+│   ├── scheduler.py            # Stride 调度器
+│   ├── ipc.py                  # IPC 管道通信
+│   └── logger.py               # 内核日志系统
 │
 ├── syscall/                     # 系统调用层
 │   ├── __init__.py
-│   └── syscall.py              # fork/exit/waitpid/getpid/setpriority/yield
+│   └── syscall.py              # fork/exit/waitpid/getpid/pipe/setpriority/yield
 │
 ├── visualizer/                  # 可视化引擎
 │   ├── __init__.py
+│   ├── charts.py               # Matplotlib 图表（甘特图/CPU/内存/公平性/映射）
 │   ├── dashboard.py            # 实时仪表盘
 │   ├── memory_view.py          # 内存页表可视化
 │   ├── scheduler_view.py       # 调度甘特图
@@ -87,6 +99,7 @@ process_management/
 │   ├── basic_fork.py           # 基础 fork/wait 演示
 │   ├── cow_demo.py             # COW 写时复制演示
 │   ├── orphan_demo.py          # 孤儿进程回收演示
+│   ├── pipe_demo.py            # 管道 IPC 演示
 │   ├── stride_demo.py          # Stride 调度公平性演示
 │   └── zombie_demo.py          # 僵尸进程演示
 │
@@ -105,6 +118,7 @@ process_management/
 ├── error_codes.py               # 错误码定义
 ├── requirements.txt             # Python 依赖
 ├── README.md                    # 本文件
+├── operation_guide.md           # 操作文档
 ├── plan.md                      # 技术方案
 ├── collaboration.md             # 团队协作指南
 └── gitee_guide.md               # Gitee 使用指南
@@ -113,21 +127,36 @@ process_management/
 ## 交互式命令
 
 ```
+--- 进程管理 ---
 fork [name]         - 创建子进程
 wait [pid]          - 等待子进程退出（-1=任意）
 exit [code]         - 终止当前进程
 pid                 - 显示当前进程PID
 ps                  - 列出所有进程
 tree                - 显示进程树
-sched               - 显示调度队列状态
-mem                 - 显示内存页表
-nice [pid] [val]    - 调整优先级
 stat [pid]          - 显示进程统计信息
 kill [pid]          - 强制杀死进程
+
+--- IPC（管道通信）---
+pipe                - 创建管道
+write <fd> <data>   - 写入管道
+read <fd> [size]    - 读取管道
+fd [pid]            - 查看文件描述符
+
+--- 调度和内存 ---
+sched               - 显示调度队列状态
+mem                 - 显示内存页表
+nice [pid] [pri]    - 调整优先级
+
+--- 工具 ---
 tick [n]            - 推进 n 个时钟周期
+dmesg               - 查看内核日志
+chart [type]        - 生成图表 (all/gantt/cpu/memory/stride/switch/mapping)
 demo [name]         - 运行演示脚本
+
+--- 系统 ---
 help                - 显示帮助
-quit                - 退出模拟器
+quit / q            - 退出模拟器
 ```
 
 ## 算法详解
