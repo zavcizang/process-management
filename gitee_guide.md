@@ -245,18 +245,12 @@ ls
 
 ## 七、日常开发流程
 
-### 每天开始工作前
+### 每天开始工作前（复制粘贴这一整段）
 ```bash
-# 1. 切到 main 分支
-git checkout main
-
-# 2. 拉取最新代码
-git pull origin main
-
-# 3. 创建/切换到自己的分支
+git checkout master
+git pull origin master
 git checkout feature/你的名字
-# 如果分支已存在：
-git checkout feature/你的名字
+git merge master
 ```
 
 ### 写完代码后
@@ -282,7 +276,7 @@ git push -u origin feature/你的名字
 git push
 ```
 
-### 请求合并到 main
+### 请求合并到 master
 1. 在 Gitee 网页上发起 Pull Request（Gitee 叫"合并请求"）
 2. 或者在群里通知架构师手动合并
 
@@ -291,12 +285,12 @@ git push
 # 1. 切到自己的分支
 git checkout feature/你的名字
 
-# 2. 合并 main 的最新代码
-git merge main
+# 2. 合并 master 的最新代码
+git merge master
 
 # 3. 如果有冲突，手动解决后：
 git add .
-git commit -m "merge: 同步 main 最新代码"
+git commit -m "merge: 同步 master 最新代码"
 ```
 
 ---
@@ -305,11 +299,11 @@ git commit -m "merge: 同步 main 最新代码"
 
 | 角色 | 分支名 |
 |------|--------|
-| A（PCB+进程树） | `feature/pcb` |
-| B（内存管理） | `feature/memory` |
-| C（调度器） | `feature/scheduler` |
-| D（系统调用） | `feature/syscall` |
-| E（可视化） | `feature/visualizer` |
+| zavci | `feature/zavci` |
+| 队友1 | `feature/你的拼音` |
+| 队友2 | `feature/你的拼音` |
+| 队友3 | `feature/你的拼音` |
+| 队友4 | `feature/你的拼音` |
 
 ---
 
@@ -340,7 +334,7 @@ git commit -m "merge: 同步 main 最新代码"
 | 添加所有文件 | `git add .` |
 | 提交 | `git commit -m "描述"` |
 | 推送 | `git push` |
-| 拉取最新 | `git pull origin main` |
+| 拉取最新 | `git pull origin master` |
 | 合并分支 | `git merge 分支名` |
 | 查看提交历史 | `git log --oneline` |
 | 撤销未提交的修改 | `git checkout -- 文件名` |
@@ -352,7 +346,7 @@ git commit -m "merge: 同步 main 最新代码"
 ### Q: push 被拒绝了怎么办？
 ```bash
 # 先拉取最新代码
-git pull origin main
+git pull origin master
 # 解决冲突（如果有）
 # 再 push
 git push
@@ -369,8 +363,8 @@ git checkout -- .
 
 ### Q: 我想看别人改了什么？
 ```bash
-# 查看 main 分支的最新提交
-git log origin/main --oneline -10
+# 查看 master 分支的最新提交
+git log origin/master --oneline -10
 
 # 查看某个文件的修改历史
 git log --oneline 文件名
