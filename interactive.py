@@ -56,6 +56,7 @@ class OSShell:
             'tick': self._cmd_tick,
             'help': self._cmd_help,
             'quit': self._cmd_quit,
+            'q': self._cmd_quit,
             'demo': self._cmd_demo,
         }
 
