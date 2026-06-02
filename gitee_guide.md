@@ -245,7 +245,11 @@ ls
 
 ## 七、日常开发流程
 
-### 每天开始工作前（复制粘贴这一整段）
+### ⚠️ 重要规则
+> **只在自己的分支上写代码，不要直接改 master！**
+> 写完后推送到自己的分支，通知 zavci 审核，审核通过后才会合入 master。
+
+### 第一步：每天开始（复制粘贴这段）
 ```bash
 git checkout master
 git pull origin master
@@ -253,45 +257,31 @@ git checkout feature/你的名字
 git merge master
 ```
 
-### 写完代码后
+### 第二步：写代码、提交
 ```bash
-# 1. 查看你改了哪些文件
+# 1. 看你改了什么
 git status
 
-# 2. 添加修改的文件
+# 2. 添加修改
 git add .
-# 或者只添加特定文件：
-git add kernel/scheduler.py
 
-# 3. 提交
+# 3. 提交（描述你做了什么）
 git commit -m "feat: 描述你做了什么"
 ```
 
-### 推送到远程
+### 第三步：推送到自己的分支（不要推master！）
 ```bash
-# 第一次推送自己的分支
-git push -u origin feature/你的名字
-
-# 之后推送
 git push
 ```
 
-### 请求合并到 master
-1. 在 Gitee 网页上发起 Pull Request（Gitee 叫"合并请求"）
-2. 或者在群里通知架构师手动合并
-
-### 合并别人的代码后，同步到自己分支
-```bash
-# 1. 切到自己的分支
-git checkout feature/你的名字
-
-# 2. 合并 master 的最新代码
-git merge master
-
-# 3. 如果有冲突，手动解决后：
-git add .
-git commit -m "merge: 同步 master 最新代码"
+### 第四步：通知 zavci
+在群里发：
 ```
+我的代码已推送到 feature/xxx，请审核合并
+```
+
+### 第五步：zavci 审核后合入 master
+只有 zavci 有权合并到 master。其他人**不要手动合并**。
 
 ---
 
