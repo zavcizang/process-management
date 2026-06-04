@@ -9,11 +9,6 @@
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?style=for-the-badge)
 ![Gitee](https://img.shields.io/badge/Gitee-Zavci-red?style=for-the-badge&logo=gitee&logoColor=white)
 
-![Stars](https://img.shields.io/gitee/stars/Zavci/process-management?style=flat-square)
-![Forks](https://img.shields.io/gitee/forks/Zavci/process-management?style=flat-square)
-![Watchers](https://img.shields.io/gitee/watchers/Zavci/process-management?style=flat-square)
-![Last-commit](https://img.shields.io/gitee/last-commit/Zavci/process-management?style=flat-square)
-
 </div>
 
 ---
