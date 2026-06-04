@@ -118,12 +118,19 @@ class OSShell:
 
         if result == ErrorCode.BLOCKED:
             print("等待子进程退出...")
-            # 推进时钟直到子进程退出
+            # 推进时钟直到有子进程变为 ZOMBIE
             for _ in range(100):
                 self._kernel.tick()
-                # 检查是否有 ZOMBIE 子进程
                 pcb = self._kernel.get_process(self._current_pid)
-                if pcb and pcb.state == ProcessState.READY:
+                if not pcb:
+                    break
+                # 检查是否有 ZOMBIE 子进程
+                has_zombie = any(
+                    self._kernel.get_process(c) and
+                    self._kernel.get_process(c).state == ProcessState.ZOMBIE
+                    for c in pcb.children
+                )
+                if has_zombie:
                     break
             # 再次尝试 waitpid
             result = self._kernel.syscall.sys_waitpid(self._current_pid, target)
@@ -285,7 +292,7 @@ class OSShell:
         # 先设置为 RUNNING 才能转 ZOMBIE
         if pcb.state == ProcessState.READY:
             pcb.set_state(ProcessState.RUNNING)
-        self._kernel.syscall.sys_exit(pid, exit_code=-1)
+        self._kernel.syscall.sys_exit(pid, exit_code=137)  # 128+9=SIGKILL
         print(f"进程 {pid} 已被杀死")
 
     def _cmd_tick(self, args: list):
