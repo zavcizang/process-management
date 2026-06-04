@@ -1,6 +1,24 @@
 # ProcMgrSim - 进程管理模拟器
 
-操作系统校赛 — 内核实现赛道
+<div align="center">
+
+![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![License](https://img.shields.io/badge/License-Apache_2.0-blue?style=for-the-badge)
+![Tests](https://img.shields.io/badge/Tests-40%2B-brightgreen?style=for-the-badge)
+![LOC](https://img.shields.io/badge/Code-5000%2B%20lines-gray?style=for-the-badge)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?style=for-the-badge)
+![Gitee](https://img.shields.io/badge/Gitee-Zavci-red?style=for-the-badge&logo=gitee&logoColor=white)
+
+![Stars](https://img.shields.io/gitee/stars/Zavci/process-management?style=flat-square)
+![Forks](https://img.shields.io/gitee/forks/Zavci/process-management?style=flat-square)
+![Watchers](https://img.shields.io/gitee/watchers/Zavci/process-management?style=flat-square)
+![Last-commit](https://img.shields.io/gitee/last-commit/Zavci/process-management?style=flat-square)
+
+</div>
+
+---
+
+**操作系统校赛 · 内核实现赛道**
 
 ## 项目简介
 
@@ -281,10 +299,81 @@ A 退出时：
 | [队友3] | 开发 | 后续负责模块 |
 | [队友4] | 开发 | 后续负责模块 |
 
+## 演示效果
+
+```
+============================================================
+    进程管理模拟器 — 操作系统校赛作品
+============================================================
+  核心功能: fork + waitpid + exit + getpid
+  创新特性: COW写时复制 | Stride公平调度 | 级联退出
+  输入 help 查看命令列表
+============================================================
+
+[PID:0] os> fork shell
+子进程已创建: PID=1
+
+[PID:0] os> fork editor
+子进程已创建: PID=2
+
+[PID:0] os> ps
+PID    PPID   名称           状态         优先级    CPU时间
+------------------------------------------------------------
+0      -1     init           READY        255      0.0      *
+1      0      shell          RUNNING      128      5.0
+2      0      editor         READY        128      0.0
+
+  总计: 3 个进程
+
+[PID:0] os> tree
+进程树:
+└── PID=0
+    ├── PID=1
+    └── PID=2
+
+[PID:0] os> mem
+内存状态:
+  总帧数: 256 | 已使用: 4 | 空闲: 252
+  共享帧: 0 | 页大小: 4096 字节
+
+[PID:0] os> dmesg
+[T=0] CREATE  pid=0 name=init parent=-1
+[T=1] CREATE  pid=1 name=shell parent=0
+[T=2] CREATE  pid=2 name=editor parent=0
+共 3 条日志
+```
+
+## 常见问题
+
+### Q: 运行时报 ModuleNotFoundError？
+
+确保在项目根目录下运行：
+
+```bash
+cd process-management
+python main.py
+```
+
+### Q: 中文显示乱码？
+
+使用 VSCode 终端（推荐），或设置环境变量：
+
+```bash
+set PYTHONIOENCODING=utf-8
+```
+
+### Q: init 进程能被杀死吗？
+
+不能。init 进程（PID=0）是所有进程的根，尝试杀死会提示"不能杀死 init 进程"。
+
+### Q: 支持多核吗？
+
+目前是单核模拟，每个时刻只运行一个进程。多核是后续扩展方向。
+
 ## 许可证
 
-本项目为操作系统课程校赛作品，仅供学习交流使用。
+[Apache License 2.0](LICENSE)
 
-### 开发工具
+## 开发工具
 
 本项目使用 Claude Code 辅助代码调试、文档编写和测试用例生成。
