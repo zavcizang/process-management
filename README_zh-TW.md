@@ -5,6 +5,8 @@
 [![简体中文](https://img.shields.io/badge/🇨🇳-简体中文-blueviolet?style=flat-square)](README.md)
 [![繁體中文](https://img.shields.io/badge/🇹🇼-繁體中文-orange?style=flat-square)](README_zh-TW.md)
 [![English](https://img.shields.io/badge/🇺🇸-English-blue?style=flat-square)](README_en.md)
+[![日本語](https://img.shields.io/badge/🇯🇵-日本語-red?style=flat-square)](README_ja.md)
+[![한국어](https://img.shields.io/badge/🇰🇷-한국어-green?style=flat-square)](README_ko.md)
 
 ![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue?style=for-the-badge)
