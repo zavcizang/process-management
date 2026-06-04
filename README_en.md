@@ -3,7 +3,7 @@
 <div align="center">
 
 [![简体中文](https://img.shields.io/badge/🇨🇳-简体中文-blueviolet?style=flat-square)](README.md)
-[![繁體中文](https://img.shields.io/badge/🇹🇼-繁體中文-orange?style=flat-square)](README_zh-TW.md)
+[![繁體中文](https://img.shields.io/badge/🇭🇰-繁體中文-orange?style=flat-square)](README_zh-TW.md)
 [![English](https://img.shields.io/badge/🇺🇸-English-blue?style=flat-square)](README_en.md)
 [![日本語](https://img.shields.io/badge/🇯🇵-日本語-red?style=flat-square)](README_ja.md)
 [![한국어](https://img.shields.io/badge/🇰🇷-한국어-green?style=flat-square)](README_ko.md)
