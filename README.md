@@ -2,7 +2,8 @@
 
 <div align="center">
 
-[![中文](https://img.shields.io/badge/🇨🇳-中文-blueviolet?style=flat-square)](README.md)
+[![简体中文](https://img.shields.io/badge/🇨🇳-简体中文-blueviolet?style=flat-square)](README.md)
+[![繁體中文](https://img.shields.io/badge/🇹🇼-繁體中文-orange?style=flat-square)](README_zh-TW.md)
 [![English](https://img.shields.io/badge/🇺🇸-English-blue?style=flat-square)](README_en.md)
 
 ![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
