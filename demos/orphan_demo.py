@@ -1,5 +1,9 @@
 """
-orphan_demo.py — 孤儿进程回收演示
+orphan_demo.py — StrideCOWScheduler 孤儿进程回收演示
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 演示内容：
 1. 创建进程树: init → A → B → C

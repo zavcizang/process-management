@@ -1,5 +1,9 @@
 """
-memory_view.py — 内存页表可视化
+memory_view.py — StrideCOWScheduler 内存页表可视化
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 提供内存状态的可视化：
 1. 物理帧分配图

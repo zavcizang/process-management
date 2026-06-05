@@ -1,5 +1,9 @@
 """
-test_visualizer.py — 可视化模块测试
+test_visualizer.py — StrideCOWScheduler 可视化模块测试
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 测试内容：
 1. 进程树可视化

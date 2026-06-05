@@ -1,5 +1,9 @@
 """
-syscall.py — 系统调用层
+syscall.py — StrideCOWScheduler 系统调用层
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 实现操作系统的核心系统调用：
 - sys_fork: 创建子进程（基于 COW 写时复制）

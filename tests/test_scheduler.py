@@ -1,5 +1,9 @@
 """
-test_scheduler.py — Stride 调度器单元测试
+test_scheduler.py — StrideCOWScheduler Stride 调度器单元测试
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 测试内容：
 1. 进程注册和注销

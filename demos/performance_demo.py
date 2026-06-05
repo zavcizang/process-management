@@ -1,5 +1,9 @@
 """
-performance_demo.py — 性能对比演示
+performance_demo.py — StrideCOWScheduler 性能对比演示
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 演示内容：
 1. COW Fork vs 传统 Fork 的内存开销对比

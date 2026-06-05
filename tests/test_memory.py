@@ -1,5 +1,9 @@
 """
-test_memory.py — COW 内存管理器单元测试
+test_memory.py — StrideCOWScheduler COW 内存管理器单元测试
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 测试内容：
 1. 帧分配和回收

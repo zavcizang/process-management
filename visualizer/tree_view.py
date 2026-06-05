@@ -1,5 +1,9 @@
 """
-tree_view.py — 进程树可视化
+tree_view.py — StrideCOWScheduler 进程树可视化
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 提供进程树的多种可视化方式：
 1. ASCII 树形图（终端友好）

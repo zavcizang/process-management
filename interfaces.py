@@ -1,5 +1,9 @@
 """
-interfaces.py — 项目接口定义（所有人的"宪法"）
+interfaces.py — StrideCOWScheduler 项目接口定义（所有人的"宪法"）
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 规则：
 1. 所有模块必须实现或调用这些接口

@@ -1,5 +1,9 @@
 """
-pcb.py — 进程控制块（Process Control Block）
+pcb.py — StrideCOWScheduler 进程控制块（Process Control Block）
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 PCB 是操作系统中最核心的数据结构，代表一个进程的全部信息。
 本模块定义了 PCB 类，包含进程的所有属性和状态管理方法。

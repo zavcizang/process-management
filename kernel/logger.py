@@ -1,5 +1,9 @@
 """
-logger.py — 内核日志系统
+logger.py — StrideCOWScheduler 内核日志系统
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 记录内核的所有操作，用于调试和演示。
 

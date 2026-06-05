@@ -1,5 +1,9 @@
 """
-process_tree.py — 进程树管理
+process_tree.py — StrideCOWScheduler 进程树管理
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 维护进程之间的父子关系，支持：
 - 进程添加/移除

@@ -1,5 +1,9 @@
 """
-ipc.py — 进程间通信（IPC）模块
+ipc.py — StrideCOWScheduler 进程间通信（IPC）模块
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 实现管道（Pipe）机制，支持父子进程之间的数据通信。
 

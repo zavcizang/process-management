@@ -1,5 +1,9 @@
 """
-test_pcb.py — PCB 单元测试
+test_pcb.py — StrideCOWScheduler PCB 单元测试
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 测试内容：
 1. PCB 创建和默认值

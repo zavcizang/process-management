@@ -1,5 +1,9 @@
 """
-scheduler.py — Stride 公平调度算法
+scheduler.py — StrideCOWScheduler Stride 公平调度算法
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 Stride 调度是 Linux CFS（完全公平调度器）的数学基础。
 

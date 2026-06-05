@@ -1,5 +1,9 @@
 """
-visualization_demo.py — 可视化图表演示
+visualization_demo.py — StrideCOWScheduler 可视化图表演示
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 演示内容：
 1. 创建进程并运行 Stride 调度

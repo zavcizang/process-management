@@ -1,5 +1,11 @@
 """
-main.py — 进程管理模拟器主程序
+main.py — StrideCOWScheduler 主程序
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
+      https://github.com/zavcizang/process-management
+许可: Apache License 2.0
 
 功能：
 1. 初始化内核

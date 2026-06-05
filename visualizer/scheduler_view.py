@@ -1,5 +1,9 @@
 """
-scheduler_view.py — 调度器可视化
+scheduler_view.py — StrideCOWScheduler 调度器可视化
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 提供调度过程的可视化：
 1. 调度甘特图（ASCII）

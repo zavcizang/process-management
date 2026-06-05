@@ -1,5 +1,9 @@
 """
-cow_demo.py — COW 写时复制演示
+cow_demo.py — StrideCOWScheduler COW 写时复制演示
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 演示内容：
 1. 创建父进程并分配内存页

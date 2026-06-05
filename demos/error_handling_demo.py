@@ -1,5 +1,9 @@
 """
-error_handling_demo.py — 错误处理演示
+error_handling_demo.py — StrideCOWScheduler 错误处理演示
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 演示内容：
 1. 尝试杀死 init 进程（EPERM 错误）

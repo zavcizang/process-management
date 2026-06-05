@@ -1,5 +1,9 @@
 """
-test_kernel.py — 内核和系统调用集成测试
+test_kernel.py — StrideCOWScheduler 内核和系统调用集成测试
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 测试内容：
 1. 内核初始化和 init 进程

@@ -1,5 +1,9 @@
 """
-memory_manager.py — COW 内存管理器
+memory_manager.py — StrideCOWScheduler COW 内存管理器
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 实现写时复制（Copy-On-Write）机制，这是 fork 高效实现的核心。
 

@@ -1,5 +1,9 @@
 """
-dashboard.py — 实时仪表盘
+dashboard.py — StrideCOWScheduler 实时仪表盘
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 整合所有可视化组件，提供系统状态的全景视图。
 """

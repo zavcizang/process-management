@@ -1,5 +1,9 @@
 """
-process_manager.py — 进程管理器
+process_manager.py — StrideCOWScheduler 进程管理器
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 负责进程的完整生命周期管理：
 - 进程创建（分配 PID、初始化 PCB、注册到调度器和进程树）

@@ -1,5 +1,9 @@
 """
-interactive.py — 交互式操作系统 Shell
+interactive.py — StrideCOWScheduler 交互式 Shell
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 提供类似真实 Shell 的交互界面，支持：
 - fork: 创建子进程

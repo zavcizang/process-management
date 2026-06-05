@@ -1,5 +1,9 @@
 """
-charts.py — Matplotlib 图表生成
+charts.py — StrideCOWScheduler Matplotlib 图表生成
+
+项目: StrideCOWScheduler — 进程管理内核模拟器
+作者: zavci (zjh3432512933)
+仓库: https://gitee.com/zjh3432512933/process-management
 
 提供基于 matplotlib 的可视化图表：
 1. 进程调度甘特图
