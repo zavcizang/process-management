@@ -1,4 +1,4 @@
-# StrideCOWScheduler — 프로세스 관리 커널 시뮬레이터
+# ProcMgrSim — 프로세스 관리 커널 시뮬레이터
 
 <div align="center">
 
@@ -12,6 +12,8 @@
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue?style=for-the-badge)
 ![Tests](https://img.shields.io/badge/Tests-40%2B-brightgreen?style=for-the-badge)
 ![LOC](https://img.shields.io/badge/Code-5000%2B%20lines-gray?style=for-the-badge)
+[![GitHub](https://img.shields.io/badge/GitHub-zavcizang-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/zavcizang/process-management)
+[![Gitee](https://img.shields.io/badge/Gitee-zjh3432512933-C71D23?style=for-the-badge&logo=gitee&logoColor=white)](https://gitee.com/zjh3432512933/process-management)
 
 </div>
 
@@ -21,7 +23,7 @@
 
 ## 개요
 
-StrideCOWScheduler은 Linux 커널의 프로세스 관리 메커니즘을 Pure Python으로 완벽히 재현한 **유저空间 커널 시뮬레이터**입니다.
+ProcMgrSim은 Linux 커널의 프로세스 관리 메커니즘을 Pure Python으로 완벽히 재현한 **유저空间 커널 시뮬레이터**입니다.
 
 ### 핵심 기능
 
@@ -60,6 +62,10 @@ StrideCOWScheduler은 Linux 커널의 프로세스 관리 메커니즘을 Pure P
 ## 빠른 시작
 
 ```bash
+# GitHub에서
+git clone git@github.com:zavcizang/process-management.git
+
+# 또는 Gitee에서 (중국 내 더 빠름)
 git clone git@gitee.com:zjh3432512933/process-management.git
 cd process-management
 python main.py          # 대화형 셸

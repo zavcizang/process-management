@@ -1,4 +1,4 @@
-# StrideCOWScheduler — プロセス管理カーネルシミュレータ
+# ProcMgrSim — プロセス管理カーネルシミュレータ
 
 <div align="center">
 
@@ -12,6 +12,8 @@
 ![License](https://img.shields.io/badge/License-Apache_2.0-blue?style=for-the-badge)
 ![Tests](https://img.shields.io/badge/Tests-40%2B-brightgreen?style=for-the-badge)
 ![LOC](https://img.shields.io/badge/Code-5000%2B%20lines-gray?style=for-the-badge)
+[![GitHub](https://img.shields.io/badge/GitHub-zavcizang-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/zavcizang/process-management)
+[![Gitee](https://img.shields.io/badge/Gitee-zjh3432512933-C71D23?style=for-the-badge&logo=gitee&logoColor=white)](https://gitee.com/zjh3432512933/process-management)
 
 </div>
 
@@ -21,7 +23,7 @@
 
 ## 概要
 
-StrideCOWSchedulerは、Linuxカーネルのプロセス管理メカニズムをPure Pythonで忠実に再現した**ユーザー空間カーネルシミュレータ**です。
+ProcMgrSimは、Linuxカーネルのプロセス管理メカニズムをPure Pythonで忠実に再現した**ユーザー空間カーネルシミュレータ**です。
 
 ### コア機能
 
@@ -60,6 +62,10 @@ StrideCOWSchedulerは、Linuxカーネルのプロセス管理メカニズムを
 ## クイックスタート
 
 ```bash
+# GitHubから
+git clone git@github.com:zavcizang/process-management.git
+
+# またはGiteeから（中国国内で高速）
 git clone git@gitee.com:zjh3432512933/process-management.git
 cd process-management
 python main.py          # インタラクティブシェル

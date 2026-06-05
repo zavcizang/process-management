@@ -1,4 +1,4 @@
-# StrideCOWScheduler — Process Management Kernel Simulator
+# ProcMgrSim — Linux Process Management Kernel Simulator
 
 <div align="center">
 
@@ -13,6 +13,8 @@
 ![Tests](https://img.shields.io/badge/Tests-40%2B-brightgreen?style=for-the-badge)
 ![LOC](https://img.shields.io/badge/Code-5000%2B%20lines-gray?style=for-the-badge)
 ![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?style=for-the-badge)
+[![GitHub](https://img.shields.io/badge/GitHub-zavcizang-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/zavcizang/process-management)
+[![Gitee](https://img.shields.io/badge/Gitee-zjh3432512933-C71D23?style=for-the-badge&logo=gitee&logoColor=white)](https://gitee.com/zjh3432512933/process-management)
 
 </div>
 
@@ -22,7 +24,7 @@
 
 ## Overview
 
-StrideCOWScheduler is a **user-space kernel simulator** that faithfully reproduces Linux kernel process management mechanisms in pure Python — including process creation, scheduling, communication, and lifecycle management.
+ProcMgrSim is a **user-space kernel simulator** that faithfully reproduces Linux kernel process management mechanisms in pure Python — including process creation, scheduling, communication, and lifecycle management.
 
 ### Core Features
 
@@ -83,6 +85,10 @@ StrideCOWScheduler is a **user-space kernel simulator** that faithfully reproduc
 ### Installation
 
 ```bash
+# From GitHub
+git clone git@github.com:zavcizang/process-management.git
+
+# Or from Gitee (faster in China)
 git clone git@gitee.com:zjh3432512933/process-management.git
 cd process-management
 
