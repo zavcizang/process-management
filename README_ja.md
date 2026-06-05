@@ -1,4 +1,4 @@
-# ProcMgrSim — プロセス管理カーネルシミュレータ
+# StrideCOWScheduler — プロセス管理カーネルシミュレータ
 
 <div align="center">
 
@@ -23,7 +23,7 @@
 
 ## 概要
 
-ProcMgrSimは、Linuxカーネルのプロセス管理メカニズムをPure Pythonで忠実に再現した**ユーザー空間カーネルシミュレータ**です。
+StrideCOWSchedulerは、Linuxカーネルのプロセス管理メカニズムをPure Pythonで忠実に再現した**ユーザー空間カーネルシミュレータ**です。
 
 ### コア機能
 

@@ -1,4 +1,4 @@
-# ProcMgrSim — 進程管理模擬器
+# StrideCOWScheduler — 進程管理模擬器
 
 <div align="center">
 
@@ -32,7 +32,7 @@
 
 ### 專案定位
 
-ProcMgrSim 是一個**使用者態內核模擬器**，在 Python 中完整還原了 Linux 內核的進程管理機制：
+StrideCOWScheduler 是一個**使用者態內核模擬器**，在 Python 中完整還原了 Linux 內核的進程管理機制：
 
 1. COW 寫時複製——fork 時零記憶體拷貝，引用計數 + 髒頁追蹤 + 按需複製
 2. Stride 公平排程——基於 Linux CFS 的數學基礎，O(log n) 最小堆排程

@@ -1,4 +1,4 @@
-# ProcMgrSim — 프로세스 관리 커널 시뮬레이터
+# StrideCOWScheduler — 프로세스 관리 커널 시뮬레이터
 
 <div align="center">
 
@@ -23,7 +23,7 @@
 
 ## 개요
 
-ProcMgrSim은 Linux 커널의 프로세스 관리 메커니즘을 Pure Python으로 완벽히 재현한 **유저空间 커널 시뮬레이터**입니다.
+StrideCOWScheduler은 Linux 커널의 프로세스 관리 메커니즘을 Pure Python으로 완벽히 재현한 **유저空间 커널 시뮬레이터**입니다.
 
 ### 핵심 기능
 
