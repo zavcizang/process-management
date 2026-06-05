@@ -1,4 +1,4 @@
-# ProcMgrSim — Process Management Kernel Simulator
+# StrideCOWScheduler — Process Management Kernel Simulator
 
 <div align="center">
 
@@ -22,7 +22,7 @@
 
 ## Overview
 
-ProcMgrSim is a **user-space kernel simulator** that faithfully reproduces Linux kernel process management mechanisms in pure Python — including process creation, scheduling, communication, and lifecycle management.
+StrideCOWScheduler is a **user-space kernel simulator** that faithfully reproduces Linux kernel process management mechanisms in pure Python — including process creation, scheduling, communication, and lifecycle management.
 
 ### Core Features
 

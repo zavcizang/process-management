@@ -40,7 +40,6 @@ body.low-power canvas.bg,body.low-power canvas.ascii-bg{display:none!important}
 .slide.dark .canvas-card{background:var(--ink);color:var(--paper)}
 .slide.accent .canvas-card{background:var(--accent);color:var(--accent-on)}
 .slide.grey .canvas-card{background:var(--grey-1)}
-.slide.split .canvas-card{padding:0;flex-direction:row}
 
 canvas.ascii-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0;mix-blend-mode:screen;opacity:.92}
 .canvas-card>*:not(.ascii-bg):not(.art-text):not(.page-num-bg):not(.corner-mark){position:relative;z-index:1}
@@ -62,14 +61,12 @@ canvas.ascii-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:
 .divider-accent{width:48px;height:3px;background:var(--accent);margin-bottom:2vh}
 .slide.dark .divider-accent{background:var(--accent-bright)}
 
-/* 代码块 — 禁止滚动，避免和翻页冲突 */
 .code-block{background:#1a1a2e;color:#e0e0e0;padding:2vh 1.8vw;font-family:var(--mono);font-size:max(11px,.82vw);line-height:1.65;letter-spacing:.02em;overflow:hidden;border-left:3px solid var(--accent);scrollbar-width:none;-ms-overflow-style:none}
 .code-block::-webkit-scrollbar{display:none}
 .code-block .kw{color:#82aaff}.code-block .str{color:#c3e88d}.code-block .num{color:#f78c6c}
 .code-block .cmt{color:#546e7a;font-style:italic}.code-block .fn{color:#82aaff}.code-block .op{color:#89ddff}
 .slide.dark .code-block{background:rgba(255,255,255,.06);border-left-color:var(--accent-bright)}
 
-/* 增强卡片 */
 .card-e{background:var(--paper);border:1px solid var(--border-subtle);padding:2.4vh 1.8vw;display:flex;flex-direction:column;position:relative;transition:border-color .2s}
 .card-e:hover{border-color:var(--accent)}
 .slide.dark .card-e{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.1)}
@@ -77,12 +74,10 @@ canvas.ascii-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:
 .slide.dark .card-e .card-icon{background:rgba(255,255,255,.08);color:var(--accent-bright)}
 .card-e .card-num{position:absolute;top:1.6vh;right:1.4vw;font-family:var(--mono);font-size:max(9px,.68vw);letter-spacing:.18em;opacity:.35}
 
-/* 增强 callout */
 .callout-v2{padding:2.4vh 2.4vw;border-left:4px solid var(--accent);background:rgba(var(--accent-rgb),.04);font-family:var(--sans),var(--sans-zh);font-size:max(14px,1.1vw);line-height:1.6;color:var(--text-primary);font-style:italic}
 .slide.dark .callout-v2{background:rgba(255,255,255,.04);color:var(--paper);border-left-color:var(--accent-bright)}
 .callout-v2 .cite{display:block;margin-top:1.2vh;font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.5;font-style:normal}
 
-/* stat card */
 .stat-v{display:flex;flex-direction:column;gap:.8vh;padding:2vh 0 2vh 1.6vw;border-left:3px solid var(--grey-2);transition:border-color .2s}
 .stat-v:hover{border-left-color:var(--accent)}
 .stat-v .s-label{font-family:var(--mono);font-size:max(9px,.7vw);letter-spacing:.28em;text-transform:uppercase;opacity:.5}
@@ -90,16 +85,13 @@ canvas.ascii-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:
 .stat-v .s-nb .s-unit{font-weight:400;font-size:.35em;opacity:.5;margin-left:.1em;vertical-align:.35em}
 .stat-v .s-note{font-family:var(--sans),var(--sans-zh);font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.4vh}
 
-/* tag */
 .tag-g{display:flex;gap:.8vw;flex-wrap:wrap}
 .tag-v{font-family:var(--mono);font-size:max(9px,.68vw);letter-spacing:.2em;text-transform:uppercase;padding:4px 12px;border:1px solid var(--grey-2);color:var(--text-helper);transition:all .2s}
 .tag-v:hover{border-color:var(--accent);color:var(--accent)}
 .tag-v.on{background:var(--accent);color:var(--accent-on);border-color:var(--accent)}
 
-/* 蓝底装饰艺术字 */
 .art-text{position:absolute;font-family:var(--sans);font-weight:100;letter-spacing:-.04em;color:rgba(255,255,255,.04);pointer-events:none;user-select:none;line-height:1}
 
-/* 代码打字机动画 */
 @keyframes blink-caret{0%,100%{border-color:transparent}50%{border-color:rgba(255,255,255,.6)}}
 @keyframes type-char{from{width:0}to{width:100%}}
 @keyframes fade-in-line{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
@@ -110,13 +102,11 @@ canvas.ascii-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:
 .type-line.l7{animation-delay:1.6s}.type-line.l8{animation-delay:1.9s}
 .type-result{animation:fade-in-line .5s ease 2.2s both;font-size:1.15em;font-weight:600;color:#c3e88d}
 
-/* flow box */
 .flow-box{display:flex;flex-direction:column;gap:1vh;padding:2vh 1.6vw;border:1px solid var(--grey-2);background:var(--paper)}
 .slide.dark .flow-box{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.04)}
 .flow-box .f-title{font-family:var(--mono);font-size:max(10px,.78vw);letter-spacing:.18em;text-transform:uppercase;color:var(--text-helper);margin-bottom:.6vh}
 .slide.dark .flow-box .f-title{color:rgba(255,255,255,.5)}
 
-/* pipeline */
 .step-item{display:flex;flex-direction:column;gap:.8vh;padding:2vh 1.6vw;border-top:2px solid var(--grey-2);transition:border-color .2s}
 .step-item:hover{border-top-color:var(--accent)}
 .step-item .s-num{font-family:var(--mono);font-weight:600;font-size:max(11px,.85vw);color:var(--accent);letter-spacing:.06em}
@@ -124,13 +114,11 @@ canvas.ascii-bg{position:absolute;inset:0;width:100%;height:100%;pointer-events:
 .step-item .s-title{font-family:var(--sans),var(--sans-zh);font-weight:600;font-size:max(16px,1.3vw);line-height:1.2;letter-spacing:-.01em}
 .step-item .s-desc{font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(12px,.88vw);line-height:1.5;opacity:.65}
 
-/* split */
 .split-half{display:grid;grid-template-columns:1fr 1fr;gap:0;flex:1;align-items:stretch}
 .split-half>.half{padding:5vh 3.4vw;display:flex;flex-direction:column;min-width:0}
 .split-half>.half.b-accent{background:var(--accent);color:var(--accent-on)}
 .split-half>.half.b-ink{background:var(--ink);color:var(--paper)}
 
-/* bar chart */
 .h-bar{display:grid;grid-template-columns:10em minmax(0,1fr) 7em;gap:1.4vh 1.4vw;align-items:center;font-feature-settings:"tnum"}
 .h-bar .r-lbl{font-family:var(--sans),var(--sans-zh);font-weight:500;font-size:max(13px,1vw);text-align:left}
 .h-bar .r-track{height:3vh;background:var(--grey-1);position:relative;overflow:hidden}
@@ -151,9 +139,6 @@ body.dark-bg #nav .dot.active{background:var(--accent)}
 body.dark-bg #hint{color:var(--paper)}
 body.low-power #hint{color:var(--accent);opacity:.72}
 
-#overview [data-anim]{opacity:1!important;transform:none!important}
-#overview .slide *{animation:none!important;transition:none!important}
-
 [data-anim]{opacity:1}
 body.low-power #deck{transition:none!important}
 body.low-power *,body.low-power *::before,body.low-power *::after{animation:none!important;transition:none!important}
@@ -169,7 +154,6 @@ body.is-win [style*="font-weight:200"]{font-weight:300!important}
 <body class="canvas-mode">
 <script>
 if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))document.body.classList.add('is-win');
-(function(){const K='ppt-lp';const r=matchMedia('(prefers-reduced-motion:reduce)').matches;const s=localStorage.getItem(K);window.__lp=s==='1'||(s===null&&r);function u(){const h=document.getElementById('hint');if(h)h.textContent=`← → · B ${window.__lp?'动态':'静态'} · ESC 索引`}window.__setLP=function(on,o={}){window.__lp=!!on;document.body.classList.toggle('low-power',window.__lp);if(o.persist!==false)localStorage.setItem(K,window.__lp?'1':'0');if(window.__lp&&document.getAnimations)document.getAnimations().forEach(a=>a.cancel());u();dispatchEvent(new CustomEvent('lp-change',{detail:{on:window.__lp}}));if(window.__ps)window.__ps(window.__ci||0)};document.body.classList.toggle('low-power',window.__lp);addEventListener('DOMContentLoaded',u,{once:true})();
 </script>
 <canvas id="bg-grid" class="bg"></canvas>
 <div id="hint">← → 翻页 · B 静态 · ESC 索引</div>
@@ -177,43 +161,37 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
 <div id="deck">
 
 <!-- ======== 01 · COVER ======== -->
-<section class="slide accent" data-layout="SWISS-COVER-ASCII" data-animate="hero">
+<section class="slide accent" data-animate="hero">
 <div class="canvas-card">
   <canvas class="ascii-bg" aria-hidden="true"></canvas>
-  <!-- 蓝底装饰艺术字 -->
   <div class="art-text" style="top:6vh;right:8vw;font-size:20vw;opacity:.03;transform:rotate(6deg)">OS</div>
   <div class="art-text" style="bottom:10vh;left:55vw;font-size:14vw;opacity:.025;transform:rotate(-4deg)">KERNEL</div>
 
   <div class="corner-mark tl" style="border-color:rgba(255,255,255,.3)"></div>
-  <div class="corner-mark tr" style="border-color:rgba(255,255,255,.3)"></div>
-  <div class="corner-mark bl" style="border-color:rgba(255,255,255,.3)"></div>
   <div class="corner-mark br" style="border-color:rgba(255,255,255,.3)"></div>
   <div class="chrome-min" style="color:rgba(255,255,255,.5)">
     <div class="l">StrideCOWScheduler · KERNEL SIMULATOR</div>
-    <div class="r">2026.06 · 01/14</div>
+    <div class="r">2026.06 · 01/16</div>
   </div>
   <div style="flex:1;padding:0;display:grid;grid-template-rows:1fr auto auto auto;gap:2vh">
     <div></div>
     <div data-anim="kicker" style="font-family:var(--mono);font-size:12px;font-weight:600;letter-spacing:.35em;text-transform:uppercase;color:rgba(255,255,255,.65)">操作系统校赛 · 内核实现赛道</div>
 
     <div style="display:flex;flex-direction:column;gap:1.6vh">
-      <!-- 主标题：艺术字混排 -->
       <h1 data-anim="title" style="margin:0;padding:0">
-        <span style="display:block;font-family:var(--sans);font-weight:100;font-size:min(6vw,10vh);line-height:.95;letter-spacing:-.04em;color:rgba(255,255,255,.5)">PROCESS</span>
-        <span style="display:block;font-family:var(--sans);font-weight:800;font-size:min(11vw,18vh);line-height:.85;letter-spacing:-.05em;color:#fff;margin-top:-.3vh">
-          Proc<span style="font-weight:200;opacity:.7">Mgr</span>Sim
+        <span style="display:block;font-family:var(--sans);font-weight:100;font-size:min(4vw,7vh);line-height:.95;letter-spacing:-.04em;color:rgba(255,255,255,.5)">S T R I D E</span>
+        <span style="display:block;font-family:var(--sans);font-weight:800;font-size:min(8vw,13vh);line-height:.85;letter-spacing:-.05em;color:#fff;margin-top:-.3vh">
+          Stride<span style="font-weight:200;opacity:.7">COW</span>Scheduler
         </span>
       </h1>
-      <!-- 分隔线 + 中文 -->
       <div style="display:flex;align-items:center;gap:1.6vw;margin-top:.5vh">
         <div style="width:60px;height:2px;background:rgba(255,255,255,.35)"></div>
         <span style="font-family:var(--sans-zh);font-weight:300;font-size:min(2.6vw,4.4vh);letter-spacing:.2em;color:rgba(255,255,255,.8)">进程管理内核模拟器</span>
         <div style="width:60px;height:2px;background:rgba(255,255,255,.35)"></div>
       </div>
-      <!-- 技术标签 -->
       <div class="tag-g" style="margin-top:.8vh">
-        <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">COW 写时复制</span>
-        <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">Stride 调度</span>
+        <span class="tag-v on">Stride 公平调度</span>
+        <span class="tag-v on">COW 写时复制</span>
         <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">管道 IPC</span>
         <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">级联退出</span>
       </div>
@@ -231,58 +209,57 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
 </div>
 </section>
 
-<!-- ======== 02 · PROJECT POSITIONING ======== -->
-<section class="slide light" data-layout="S09" data-animate="statement">
+<!-- ======== 02 · WHY STRIDE + COW ======== -->
+<section class="slide light" data-animate="four-cards">
 <div class="canvas-card">
   <div class="page-num-bg">02</div>
   <div class="chrome-min tight">
-    <div class="l">02/14 · POSITIONING</div>
-    <div class="r">WHAT & WHY</div>
+    <div class="l">02/16 · WHY THESE ALGORITHMS</div>
+    <div class="r">PROBLEM & SOLUTION</div>
   </div>
   <div style="flex:1"></div>
-  <div style="padding:0;display:grid;grid-template-rows:auto 1fr auto;gap:3vh">
-    <div data-anim="line">
-      <div class="divider-accent"></div>
-      <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.2vw,9.2vh);line-height:1.1;letter-spacing:-.02em">
-        实现了 Linux 内核的<span style="color:var(--accent)">进程管理核心机制</span>
-      </h2>
-    </div>
-    <div data-anim="up" style="display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-self:end">
-      <div style="display:flex;flex-direction:column;gap:2vh">
-        <div class="callout-v2" style="border-left-color:var(--accent)">
-          COW 写时复制、Stride 公平调度、管道 IPC——三大核心机制，均基于 Linux 内核的真实设计模式，在用户态完整还原。
-          <span class="cite">Design Philosophy</span>
-        </div>
-        <div style="font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.7;opacity:.75">
-          StrideCOWScheduler 在用户态完整模拟了 Linux 内核的进程管理全链路：从 fork 创建进程、COW 写时复制内存、Stride 公平调度 CPU、到管道 IPC 进程间通信、级联退出与孤儿回收。所有实现均可交互操作、可视化验证。
-        </div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:1.4vh">
-        <div style="font-family:var(--mono);font-size:max(10px,.78vw);letter-spacing:.22em;text-transform:uppercase;opacity:.5;margin-bottom:.4vh">DESIGN PHILOSOPHY</div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:1.2vw;align-items:start;padding:1.2vh 0;border-top:1px solid var(--border-subtle)">
-          <span style="font-family:var(--sans);font-weight:200;font-size:2.4vw;color:var(--accent);line-height:1">01</span>
-          <div><div style="font-weight:600;font-size:max(14px,1.1vw)">用户态模拟</div><div style="font-size:max(11px,.82vw);opacity:.6;margin-top:.3vh">不依赖硬件，零配置即可运行</div></div>
-        </div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:1.2vw;align-items:start;padding:1.2vh 0;border-top:1px solid var(--border-subtle)">
-          <span style="font-family:var(--sans);font-weight:200;font-size:2.4vw;color:var(--accent);line-height:1">02</span>
-          <div><div style="font-weight:600;font-size:max(14px,1.1vw)">完整生命周期</div><div style="font-size:max(11px,.82vw);opacity:.6;margin-top:.3vh">fork → 调度 → 通信 → waitpid → exit</div></div>
-        </div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:1.2vw;align-items:start;padding:1.2vh 0;border-top:1px solid var(--border-subtle)">
-          <span style="font-family:var(--sans);font-weight:200;font-size:2.4vw;color:var(--accent);line-height:1">03</span>
-          <div><div style="font-weight:600;font-size:max(14px,1.1vw)">可视化验证</div><div style="font-size:max(11px,.82vw);opacity:.6;margin-top:.3vh">进程树 · 甘特图 · 内存映射 · 上下文切换</div></div>
-        </div>
+  <div data-anim="line" style="margin-bottom:3vh">
+    <div class="divider-accent"></div>
+    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(5.2vw,9.2vh);line-height:1.1;letter-spacing:-.02em">
+      为什么选 <span style="color:var(--accent)">Stride + COW</span>？
+    </h2>
+  </div>
+  <div data-anim="up" style="display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-self:end">
+    <div class="card-e" style="border-top:3px solid var(--accent)">
+      <span class="card-num">01</span>
+      <div class="card-icon">⚡</div>
+      <div class="t-cat accent" style="margin-bottom:.4vh">CPU 分配问题</div>
+      <div style="font-weight:600;font-size:max(14px,1.1vw);line-height:1.2">如何公平分配 CPU？</div>
+      <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:1vh">
+        ❌ 简单轮转：忽略优先级<br>
+        ❌ MLFQ：靠经验调优<br>
+        ✅ <strong>Stride：数学证明公平</strong>
       </div>
     </div>
+    <div class="card-e" style="border-top:3px solid var(--accent)">
+      <span class="card-num">02</span>
+      <div class="card-icon">💾</div>
+      <div class="t-cat accent" style="margin-bottom:.4vh">内存效率问题</div>
+      <div style="font-weight:600;font-size:max(14px,1.1vw);line-height:1.2">如何高效创建进程？</div>
+      <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:1vh">
+        ❌ 简单复制：慢且浪费<br>
+        ✅ <strong>COW：零拷贝 + 按需复制</strong>
+      </div>
+    </div>
+  </div>
+  <div class="callout-v2" style="margin-top:3vh">
+    这两个算法都是 Linux 内核的真实设计模式，我们完整还原了，不是简化版。
+    <span class="cite">Design Philosophy</span>
   </div>
 </div>
 </section>
 
 <!-- ======== 03 · DEMO OVERVIEW ======== -->
-<section class="slide grey" data-layout="S11" data-animate="pipeline">
+<section class="slide grey" data-animate="pipeline">
 <div class="canvas-card">
   <div class="page-num-bg">03</div>
   <div class="chrome-min tight">
-    <div class="l">03/14 · DEMO</div>
+    <div class="l">03/16 · DEMO</div>
     <div class="r">NEXT</div>
   </div>
   <div style="flex:1"></div>
@@ -294,64 +271,53 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
   <div data-anim="up" style="display:grid;grid-template-columns:repeat(5,1fr);gap:1.2vw;align-content:end">
     <div class="card-e" style="border-top:3px solid var(--accent)">
       <span class="card-num">01</span>
-      <div class="card-icon"><i data-lucide="git-branch" style="width:1.6vw;height:1.6vw;stroke-width:1.6"></i></div>
-      <div class="t-cat accent" style="margin-bottom:.4vh">FORK</div>
-      <div style="font-weight:600;font-size:max(14px,1.1vw);line-height:1.2">创建进程</div>
-      <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">fork + ps + tree<br>观察进程树父子关系</div>
+      <div class="card-icon">⚡</div>
+      <div class="t-cat accent" style="margin-bottom:.4vh">STRIDE</div>
+      <div style="font-weight:600;font-size:max(14px,1.1vw);line-height:1.2">公平调度</div>
+      <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">nice + ps + chart stride<br>验证 CPU 时间比例</div>
     </div>
     <div class="card-e" style="border-top:3px solid var(--accent)">
       <span class="card-num">02</span>
-      <div class="card-icon"><i data-lucide="copy" style="width:1.6vw;height:1.6vw;stroke-width:1.6"></i></div>
+      <div class="card-icon">📋</div>
       <div class="t-cat accent" style="margin-bottom:.4vh">COW</div>
       <div style="font-weight:600;font-size:max(14px,1.1vw);line-height:1.2">写时复制</div>
       <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">mem + chart mapping<br>验证零拷贝内存共享</div>
     </div>
     <div class="card-e" style="border-top:3px solid var(--accent)">
       <span class="card-num">03</span>
-      <div class="card-icon"><i data-lucide="cpu" style="width:1.6vw;height:1.6vw;stroke-width:1.6"></i></div>
-      <div class="t-cat accent" style="margin-bottom:.4vh">STRIDE</div>
-      <div style="font-weight:600;font-size:max(14px,1.1vw);line-height:1.2">公平调度</div>
-      <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">nice + ps + chart stride<br>验证 CPU 时间比例</div>
+      <div class="card-icon">🔀</div>
+      <div class="t-cat accent" style="margin-bottom:.4vh">FORK</div>
+      <div style="font-weight:600;font-size:max(14px,1.1vw);line-height:1.2">创建进程</div>
+      <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">fork + ps + tree<br>观察进程树父子关系</div>
     </div>
     <div class="card-e" style="border-top:3px solid var(--accent)">
       <span class="card-num">04</span>
-      <div class="card-icon"><i data-lucide="mail" style="width:1.6vw;height:1.6vw;stroke-width:1.6"></i></div>
+      <div class="card-icon">📨</div>
       <div class="t-cat accent" style="margin-bottom:.4vh">IPC</div>
       <div style="font-weight:600;font-size:max(14px,1.1vw);line-height:1.2">管道通信</div>
       <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">pipe + write + read<br>父写子读，数据传递</div>
     </div>
     <div class="card-e" style="border-top:3px solid var(--accent)">
       <span class="card-num">05</span>
-      <div class="card-icon"><i data-lucide="scroll-text" style="width:1.6vw;height:1.6vw;stroke-width:1.6"></i></div>
+      <div class="card-icon">📜</div>
       <div class="t-cat accent" style="margin-bottom:.4vh">DMESG</div>
       <div style="font-weight:600;font-size:max(14px,1.1vw);line-height:1.2">内核日志</div>
       <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">dmesg 命令<br>回放所有内核操作记录</div>
     </div>
   </div>
-  <div style="margin-top:2vh;padding-top:1.6vh;border-top:1px solid var(--grey-2);display:flex;justify-content:space-between;align-items:center">
-    <div style="display:flex;gap:2vw">
-      <div style="display:flex;align-items:center;gap:.5vw"><i data-lucide="check-circle" style="width:1.1vw;height:1.1vw;stroke:var(--accent);stroke-width:1.6"></i><span style="font-size:max(11px,.82vw);opacity:.6">纯 Python · 零依赖 · VSCode 终端运行</span></div>
-      <div style="display:flex;align-items:center;gap:.5vw"><i data-lucide="check-circle" style="width:1.1vw;height:1.1vw;stroke:var(--accent);stroke-width:1.6"></i><span style="font-size:max(11px,.82vw);opacity:.6">python main.py --test 全部通过</span></div>
-    </div>
-    <a href="https://gitee.com/zjh3432512933/process-management" target="_blank" style="font-family:var(--mono);font-size:max(10px,.78vw);color:var(--accent);text-decoration:none;letter-spacing:.08em;display:flex;align-items:center;gap:.5vw;opacity:.8">
-      <i data-lucide="external-link" style="width:1vw;height:1vw;stroke:var(--accent);stroke-width:1.6"></i>
-      gitee.com/zjh3432512933/process-management
-    </a>
-  </div>
 </div>
 </section>
 
-<!-- ======== 04 · BLANK — SWITCH TO VSCODE ======== -->
-<section class="slide dark" data-layout="S09" data-animate="hero">
+<!-- ======== 04 · DEMO TIME ======== -->
+<section class="slide dark" data-animate="hero">
 <div class="canvas-card">
   <canvas class="ascii-bg" aria-hidden="true"></canvas>
-  <!-- 大胆艺术字装饰 -->
   <div class="art-text" style="top:8vh;left:6vw;font-size:22vw;opacity:.05;transform:rotate(-6deg);font-weight:100">VS</div>
   <div class="art-text" style="bottom:8vh;right:6vw;font-size:16vw;opacity:.04;transform:rotate(4deg);font-weight:100">CODE</div>
   <div class="art-text" style="top:45%;left:50%;font-size:30vw;opacity:.025;transform:translate(-50%,-50%) rotate(-2deg)">DEMO</div>
 
   <div class="chrome-min" style="color:rgba(255,255,255,.5)">
-    <div class="l">04/14 · DEMO TIME</div>
+    <div class="l">04/16 · DEMO TIME</div>
     <div class="r">SWITCH TO VSCODE</div>
   </div>
   <div style="flex:1;padding:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:3vh;position:relative;z-index:1">
@@ -363,158 +329,20 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
     </div>
     <span style="font-family:var(--mono);font-size:12px;letter-spacing:.2em;color:rgba(255,255,255,.4);text-transform:uppercase">press esc → overview → select vscode window</span>
   </div>
-  <div style="border-top:1px solid rgba(255,255,255,.15);padding-top:2vh;display:flex;justify-content:center;position:relative;z-index:1">
-    <span style="font-family:var(--mono);font-size:11px;letter-spacing:.18em;color:rgba(255,255,255,.35);text-transform:uppercase">← → continue presentation</span>
-  </div>
 </div>
 </section>
 
-<!-- ======== 05 · COW 核心原理 ======== -->
-<section class="slide dark" data-layout="S08" data-animate="duo-mirror">
+<!-- ======== 05 · STRIDE 核心公式 ======== -->
+<section class="slide dark" data-animate="duo-mirror">
 <div class="canvas-card">
-  <div class="page-num-bg" style="color:rgba(255,255,255,.04)">04</div>
-  <div class="corner-mark tl" style="border-color:rgba(255,255,255,.12)"></div>
-  <div class="corner-mark br" style="border-color:rgba(255,255,255,.12)"></div>
+  <div class="page-num-bg" style="color:rgba(255,255,255,.04)">05</div>
   <div class="chrome-min tight" style="color:rgba(255,255,255,.62)">
-    <div class="l">05/14 · INNOVATION #1</div>
-    <div class="r">COW COPY-ON-WRITE</div>
+    <div class="l">05/16 · INNOVATION #1</div>
+    <div class="r">STRIDE FORMULA</div>
   </div>
   <div style="flex:1"></div>
   <div data-anim="line" style="margin-bottom:1.5vh">
-    <div class="t-cat" style="color:rgba(255,255,255,.62);letter-spacing:.22em;margin-bottom:.8vh">创新点一 · Copy-On-Write</div>
-    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(3.8vw,6.8vh);line-height:1.1;letter-spacing:-.02em;color:var(--paper)">COW 写时复制</h2>
-  </div>
-  <div data-anim="up" style="display:grid;grid-template-columns:5fr 7fr;gap:2.5vw;min-height:0">
-    <div style="display:flex;flex-direction:column;min-height:0">
-      <div class="code-block" style="border-left-color:var(--accent-bright);flex:1;overflow:hidden">
-        <div><span class="cmt"># kernel/memory_manager.py</span></div>
-        <div style="margin-bottom:.4vh">&nbsp;</div>
-        <div><span class="kw">def</span> <span class="fn">fork_page_table</span>(<span class="op">self</span>, parent_pt):</div>
-        <div>    <span class="str">"""fork 时复制页表（零拷贝）"""</span></div>
-        <div>    child_pt = <span class="fn">PageTable</span>()</div>
-        <div>    <span class="kw">for</span> page, entry <span class="kw">in</span> parent_pt.entries:</div>
-        <div>        child_pt.map(page, entry.frame_id)</div>
-        <div>        entry.is_writable = <span class="num">False</span> <span class="cmt"># 只读</span></div>
-        <div>        <span class="op">self</span>._fm.<span class="fn">incref</span>(entry.frame_id)</div>
-        <div>    <span class="kw">return</span> child_pt</div>
-        <div style="margin-top:.4vh">&nbsp;</div>
-        <div><span class="kw">def</span> <span class="fn">on_page_write</span>(<span class="op">self</span>, pt, page_num):</div>
-        <div>    <span class="str">"""写入时触发 COW"""</span></div>
-        <div>    entry = pt.get_entry(page_num)</div>
-        <div>    <span class="kw">if</span> entry.is_writable: <span class="kw">return</span> <span class="num">False</span></div>
-        <div>    <span class="cmt"># ref_count > 1 → 复制物理帧</span></div>
-        <div>    new_frame = <span class="op">self</span>._fm.<span class="fn">allocate</span>()</div>
-        <div>    <span class="op">self</span>._fm.<span class="fn">copy_frame</span>(entry.frame_id, new_frame)</div>
-        <div>    entry.frame_id = new_frame</div>
-        <div>    entry.is_writable = <span class="num">True</span></div>
-      </div>
-    </div>
-    <!-- 右：原理说明 -->
-    <div style="display:flex;flex-direction:column;gap:1.8vh;min-height:0">
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45)">HOW IT WORKS</div>
-
-      <div style="display:grid;grid-template-columns:6px 1fr;gap:1vw;align-items:start;padding:1.2vh 0;border-top:1px solid rgba(255,255,255,.1)">
-        <div style="width:6px;height:6px;background:var(--accent-bright);margin-top:.6vh;flex-shrink:0"></div>
-        <div>
-          <div style="font-weight:600;font-size:max(15px,1.2vw);color:var(--paper)">fork 前</div>
-          <div style="font-size:max(12px,.9vw);opacity:.6;margin-top:.4vh;line-height:1.6">
-            父进程拥有独立页表<br>
-            物理帧 ref_count = 1
-          </div>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:6px 1fr;gap:1vw;align-items:start;padding:1.2vh 0;border-top:1px solid rgba(255,255,255,.1)">
-        <div style="width:6px;height:6px;background:var(--accent-bright);margin-top:.6vh;flex-shrink:0"></div>
-        <div>
-          <div style="font-weight:600;font-size:max(15px,1.2vw);color:var(--paper)">fork 后</div>
-          <div style="font-size:max(12px,.9vw);opacity:.6;margin-top:.4vh;line-height:1.6">
-            子进程页表指向<strong style="color:var(--accent-bright)">同一物理帧</strong><br>
-            ref_count = 2 · 零拷贝 · 零额外内存
-          </div>
-        </div>
-      </div>
-
-      <div style="display:grid;grid-template-columns:6px 1fr;gap:1vw;align-items:start;padding:1.2vh 0;border-top:1px solid rgba(255,255,255,.1)">
-        <div style="width:6px;height:6px;background:#E67E22;margin-top:.6vh;flex-shrink:0"></div>
-        <div>
-          <div style="font-weight:600;font-size:max(15px,1.2vw);color:var(--paper)">写入后</div>
-          <div style="font-size:max(12px,.9vw);opacity:.6;margin-top:.4vh;line-height:1.6">
-            触发 COW → 只复制被修改的<strong style="color:#E67E22">那一帧</strong><br>
-            其余帧继续共享 · 节省内存
-          </div>
-        </div>
-      </div>
-
-      <div class="callout-v2" style="margin-top:auto;border-left-color:var(--accent-bright);background:rgba(255,255,255,.04);padding:1.4vh 1.8vw">
-        "fork 时零内存拷贝，只有写入时才复制。"
-        <span class="cite">— Linux Kernel Design Pattern</span>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ======== 05 · COW 验证 ======== -->
-<section class="slide light" data-layout="S08" data-animate="duo-mirror">
-<div class="canvas-card">
-  <div class="page-num-bg">05</div>
-  <div class="chrome-min tight">
-    <div class="l">06/14 · COW VERIFICATION</div>
-    <div class="r">DEMO OUTPUT</div>
-  </div>
-  <div style="flex:1"></div>
-  <div data-anim="line" style="margin-bottom:2vh">
-    <div class="divider-accent"></div>
-    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.6vw,8.2vh);line-height:1.1;letter-spacing:-.025em">COW 验证结果</h2>
-  </div>
-  <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0 3vw;align-items:end;margin-top:3vh">
-    <div style="display:flex;flex-direction:column;gap:1.6vh">
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey-3);display:flex;align-items:center;gap:.6vw">
-        <span style="font-weight:600;color:var(--ink);border:1px solid var(--ink);padding:.2em .6em;font-size:.92em">01</span> TRADITIONAL FORK
-      </div>
-      <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:2.8vw;line-height:1;letter-spacing:-.03em">全量复制页表</div>
-      <div style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;opacity:.7">
-        fork 时将父进程的全部页表项复制给子进程，每个物理帧的引用计数不变，子进程获得独立的内存副本。
-      </div>
-      <div style="font-family:var(--mono);font-size:11px;line-height:1.8;color:var(--ink);margin-top:auto;padding:1.2vh 1.4vw;border:1px solid var(--grey-2);background:var(--grey-1)">
-        <div style="opacity:.45;margin-bottom:.3vh">// 实测数据 (4 页 × 4KB)</div>
-        <div>fork 前空闲帧: <strong>252</strong></div>
-        <div>fork 后空闲帧: <strong>248</strong></div>
-        <div style="color:#E67E22;font-weight:600;margin-top:.4vh">多分配 4 帧 · 额外开销 16KB</div>
-      </div>
-    </div>
-    <div style="background:var(--grey-2);width:1px;align-self:stretch"></div>
-    <div style="display:flex;flex-direction:column;gap:1.6vh">
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey-3);display:flex;align-items:center;gap:.6vw">
-        <span style="font-weight:600;color:var(--accent);border:1px solid var(--accent);padding:.2em .6em;font-size:.92em">02</span> OURS · COW
-      </div>
-      <div style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:2.8vw;line-height:1;letter-spacing:-.03em;color:var(--accent)">写时复制共享</div>
-      <div style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;opacity:.7">
-        fork 时仅复制页表结构，父子进程的页表项指向同一物理帧，ref_count 递增。仅在写入时触发按需复制。
-      </div>
-      <div style="font-family:var(--mono);font-size:11px;line-height:1.8;color:var(--ink);margin-top:auto;padding:1.2vh 1.4vw;border:1px solid var(--grey-2);background:var(--grey-1)">
-        <div style="opacity:.45;margin-bottom:.3vh">// 实测数据 (4 页 × 4KB)</div>
-        <div>fork 前空闲帧: <strong>252</strong></div>
-        <div>fork 后空闲帧: <strong>252</strong></div>
-        <div style="color:var(--accent);font-weight:600;margin-top:.4vh">零额外分配 · 内存开销 = 0</div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ======== 06 · STRIDE 调度 ======== -->
-<section class="slide dark" data-layout="S07" data-animate="bar-grow">
-<div class="canvas-card">
-  <div class="page-num-bg" style="color:rgba(255,255,255,.04)">06</div>
-  <div class="chrome-min tight" style="color:rgba(255,255,255,.62)">
-    <div class="l">07/14 · INNOVATION #2</div>
-    <div class="r">STRIDE SCHEDULING</div>
-  </div>
-  <div style="flex:1"></div>
-  <div data-anim="line" style="margin-bottom:1.5vh">
-    <div class="t-cat" style="color:rgba(255,255,255,.62);letter-spacing:.22em;margin-bottom:.8vh">创新点二 · Stride</div>
+    <div class="t-cat" style="color:rgba(255,255,255,.62);letter-spacing:.22em;margin-bottom:.8vh">创新点一 · Stride Scheduling</div>
     <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(3.8vw,6.8vh);line-height:1.1;letter-spacing:-.02em;color:var(--paper)">Stride 公平调度</h2>
   </div>
   <div data-anim="up" style="display:grid;grid-template-columns:5fr 7fr;gap:2.5vw;flex:1;min-height:0">
@@ -523,115 +351,244 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
         <div><span class="cmt"># kernel/scheduler.py</span></div>
         <div><span class="kw">BIG_STRIDE</span> = <span class="num">1_000_000</span></div>
         <div style="margin-top:.3vh">&nbsp;</div>
-        <div><span class="kw">def</span> <span class="fn">register</span>(<span class="op">self</span>, pid, priority=<span class="num">128</span>):</div>
-        <div>    stride = <span class="num">1_000_000</span> / (<span class="num">256</span> - priority)</div>
-        <div>    <span class="op">self</span>._registry[pid] = {</div>
-        <div>        <span class="str">'stride'</span>: stride, <span class="str">'pass_value'</span>: <span class="num">0.0</span>,</div>
-        <div>    }</div>
+        <div><span class="cmt"># 核心公式</span></div>
+        <div><span class="kw">stride</span> = <span class="num">BIG_STRIDE</span> / (<span class="num">256</span> - <span class="fn">priority</span>)</div>
         <div style="margin-top:.3vh">&nbsp;</div>
-        <div><span class="kw">def</span> <span class="fn">dequeue</span>(<span class="op">self</span>):</div>
-        <div>    <span class="kw">return</span> <span class="fn">heapq.heappop</span>(<span class="op">self</span>._heap)</div>
+        <div><span class="cmt"># 进程 A: 高优先级</span></div>
+        <div>A.priority = <span class="num">10</span></div>
+        <div>A.stride = <span class="num">1_000_000</span> / (<span class="num">256</span> - <span class="num">10</span>) = <span class="num">4065</span></div>
         <div style="margin-top:.3vh">&nbsp;</div>
-        <div><span class="kw">def</span> <span class="fn">update_after_run</span>(<span class="op">self</span>, pid, ticks):</div>
-        <div>    entry[<span class="str">'pass_value'</span>] += entry[<span class="str">'stride'</span>] * ticks</div>
+        <div><span class="cmt"># 进程 B: 低优先级</span></div>
+        <div>B.priority = <span class="num">133</span></div>
+        <div>B.stride = <span class="num">1_000_000</span> / (<span class="num">256</span> - <span class="num">133</span>) = <span class="num">8130</span></div>
       </div>
     </div>
     <div style="display:flex;flex-direction:column;gap:1.6vh;min-height:0">
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45)">VERIFIED · 200 TICKS</div>
-      <div class="h-bar" style="color:var(--paper)">
-        <div class="r-lbl" style="color:rgba(255,255,255,.9)">Process A <span style="opacity:.4;font-size:.8em">pri=10</span></div>
-        <div class="r-track"><div class="r-fill accent" style="width:49.7%"></div></div>
-        <div class="r-val" style="color:var(--accent-bright)">49.7<span class="u">%</span></div>
-        <div class="r-lbl" style="color:rgba(255,255,255,.9)">Process B <span style="opacity:.4;font-size:.8em">pri=133</span></div>
-        <div class="r-track"><div class="r-fill" style="width:25.1%;background:rgba(255,255,255,.35)"></div></div>
-        <div class="r-val" style="color:rgba(255,255,255,.7)">25.1<span class="u">%</span></div>
-        <div class="r-lbl" style="color:rgba(255,255,255,.9)">Process C <span style="opacity:.4;font-size:.8em">pri=133</span></div>
-        <div class="r-track"><div class="r-fill" style="width:25.1%;background:rgba(255,255,255,.35)"></div></div>
-        <div class="r-val" style="color:rgba(255,255,255,.7)">25.1<span class="u">%</span></div>
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45)">SCHEDULING RULE</div>
+      <div class="callout-v2" style="border-left-color:var(--accent-bright);background:rgba(255,255,255,.04)">
+        每次选 <strong>pass_value 最小</strong>的进程运行<br>
+        运行后：pass_value += stride
+        <span class="cite">Core Algorithm</span>
       </div>
       <div style="display:grid;grid-template-columns:6px 1fr;gap:1vw;align-items:start;padding:1vh 0;border-top:1px solid rgba(255,255,255,.1)">
         <div style="width:6px;height:6px;background:var(--accent-bright);margin-top:.5vh;flex-shrink:0"></div>
-        <div><div style="font-weight:600;font-size:max(13px,1vw);color:var(--paper)">数学证明</div><div style="font-size:max(11px,.82vw);opacity:.55;margin-top:.2vh;line-height:1.5">stride_A / stride_B = 8130/4065 = <strong style="color:var(--accent-bright)">2:1</strong><br>CPU 时间比 = 1/stride_A : 1/stride_B = 2:1</div></div>
+        <div><div style="font-weight:600;font-size:max(13px,1vw);color:var(--paper)">小步长 → 多 CPU</div><div style="font-size:max(11px,.82vw);opacity:.55;margin-top:.2vh;line-height:1.5">priority 越小，stride 越小，pass_value 增长越慢，被选中次数越多</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:6px 1fr;gap:1vw;align-items:start;padding:1vh 0;border-top:1px solid rgba(255,255,255,.1)">
+        <div style="width:6px;height:6px;background:#E67E22;margin-top:.5vh;flex-shrink:0"></div>
+        <div><div style="font-weight:600;font-size:max(13px,1vw);color:var(--paper)">大步长 → 少 CPU</div><div style="font-size:max(11px,.82vw);opacity:.55;margin-top:.2vh;line-height:1.5">priority 越大，stride 越大，pass_value 增长越快，被选中次数越少</div></div>
       </div>
       <div style="margin-top:auto;padding:1.4vh 1.6vw;border-left:3px solid var(--accent-bright);background:rgba(255,255,255,.04)">
         <div style="font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.6;color:rgba(255,255,255,.85);font-style:italic">
-          Stride 调度的公平性不靠经验，靠数学。比例由优先级精确决定，可证明、可复现。
+          这不是靠经验调优，是靠数学公式保证的公平性。
         </div>
-        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.4;margin-top:.6vh">— Linux CFS SCHEDULER MATHEMATICAL BASIS</div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.4;margin-top:.6vh">— Mathematical Proof</div>
       </div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- ======== 07 · PIPE IPC ======== -->
-<section class="slide light" data-layout="S11" data-animate="pipeline">
+<!-- ======== 06 · STRIDE 数学证明 ======== -->
+<section class="slide light" data-animate="bar-grow">
 <div class="canvas-card">
-  <div class="page-num-bg">07</div>
+  <div class="page-num-bg">06</div>
   <div class="chrome-min tight">
-    <div class="l">08/14 · INNOVATION #3</div>
-    <div class="r">PIPE IPC</div>
+    <div class="l">06/16 · MATHEMATICAL PROOF</div>
+    <div class="r">VERIFICATION</div>
+  </div>
+  <div style="flex:1"></div>
+  <div data-anim="line" style="margin-bottom:2vh">
+    <div class="divider-accent"></div>
+    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.6vw,8.2vh);line-height:1.1;letter-spacing:-.025em">公平性数学证明</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:0 3vw;align-items:end;margin-top:3vh">
+    <div style="display:flex;flex-direction:column;gap:1.6vh">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey-3);display:flex;align-items:center;gap:.6vw">
+        <span style="font-weight:600;color:var(--ink);border:1px solid var(--ink);padding:.2em .6em;font-size:.92em">01</span> PROOF
+      </div>
+      <div style="font-family:var(--mono);font-size:max(14px,1.1vw);line-height:2;color:var(--ink)">
+        <div>stride_A = 1,000,000 / (256-10) = <strong style="color:var(--accent)">4065</strong></div>
+        <div>stride_B = 1,000,000 / (256-133) = <strong style="color:var(--accent)">8130</strong></div>
+        <div style="margin-top:.5vh">CPU 时间比 = 1/stride_A : 1/stride_B</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= 1/4065 : 1/8130</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;= <strong style="color:var(--accent);font-size:1.2em">2 : 1</strong></div>
+      </div>
+    </div>
+    <div style="background:var(--grey-2);width:1px;align-self:stretch"></div>
+    <div style="display:flex;flex-direction:column;gap:1.6vh">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--grey-3);display:flex;align-items:center;gap:.6vw">
+        <span style="font-weight:600;color:var(--accent);border:1px solid var(--accent);padding:.2em .6em;font-size:.92em">02</span> VERIFICATION
+      </div>
+      <div class="h-bar" style="color:var(--ink)">
+        <div class="r-lbl">Process A <span style="opacity:.4;font-size:.8em">pri=10</span></div>
+        <div class="r-track"><div class="r-fill accent" style="width:66.7%"></div></div>
+        <div class="r-val" style="color:var(--accent)">66.7<span class="u">%</span></div>
+        <div class="r-lbl">Process B <span style="opacity:.4;font-size:.8em">pri=133</span></div>
+        <div class="r-track"><div class="r-fill" style="width:33.3%"></div></div>
+        <div class="r-val">33.3<span class="u">%</span></div>
+      </div>
+      <div style="font-family:var(--mono);font-size:11px;line-height:1.8;color:var(--ink);margin-top:auto;padding:1.2vh 1.4vw;border:1px solid var(--grey-2);background:var(--grey-1)">
+        <div style="opacity:.45;margin-bottom:.3vh">// 实测数据 (200 ticks)</div>
+        <div>A 的 CPU 时间: <strong style="color:var(--accent)">132.8</strong> (66.4%)</div>
+        <div>B 的 CPU 时间: <strong>67.2</strong> (33.6%)</div>
+        <div style="color:var(--accent);font-weight:600;margin-top:.4vh">比例接近 2:1 ✓</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ======== 07 · COW 核心思想 ======== -->
+<section class="slide dark" data-animate="duo-mirror">
+<div class="canvas-card">
+  <div class="page-num-bg" style="color:rgba(255,255,255,.04)">07</div>
+  <div class="chrome-min tight" style="color:rgba(255,255,255,.62)">
+    <div class="l">07/16 · INNOVATION #2</div>
+    <div class="r">COW COPY-ON-WRITE</div>
   </div>
   <div style="flex:1"></div>
   <div data-anim="line" style="margin-bottom:1.5vh">
+    <div class="t-cat" style="color:rgba(255,255,255,.62);letter-spacing:.22em;margin-bottom:.8vh">创新点二 · Copy-On-Write</div>
+    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(3.8vw,6.8vh);line-height:1.1;letter-spacing:-.02em;color:var(--paper)">COW 写时复制</h2>
+  </div>
+  <div data-anim="up" style="display:grid;grid-template-columns:1fr 1fr;gap:3vw">
+    <div class="card-e" style="border-top:3px solid #E74C3C;background:rgba(255,255,255,.03)">
+      <div class="card-num" style="color:rgba(255,255,255,.3)">❌</div>
+      <div class="card-icon" style="background:rgba(231,76,60,.15);color:#E74C3C">🐌</div>
+      <div class="t-cat" style="color:#E74C3C;margin-bottom:.4vh">笨办法</div>
+      <div style="font-weight:600;font-size:max(16px,1.3vw);color:var(--paper);line-height:1.2">fork 时复制整个地址空间</div>
+      <div style="font-size:max(12px,.92vw);line-height:1.5;opacity:.6;margin-top:1vh;color:rgba(255,255,255,.8)">
+        • 慢<br>
+        • 浪费内存<br>
+        • 子进程可能马上 exec，复制全白费
+      </div>
+    </div>
+    <div class="card-e" style="border-top:3px solid #27AE60;background:rgba(255,255,255,.03)">
+      <div class="card-num" style="color:rgba(255,255,255,.3)">✅</div>
+      <div class="card-icon" style="background:rgba(39,174,96,.15);color:#27AE60">⚡</div>
+      <div class="t-cat" style="color:#27AE60;margin-bottom:.4vh">聪明办法 (COW)</div>
+      <div style="font-weight:600;font-size:max(16px,1.3vw);color:var(--paper);line-height:1.2">fork 时共享，写入时才复制</div>
+      <div style="font-size:max(12px,.92vw);line-height:1.5;opacity:.6;margin-top:1vh;color:rgba(255,255,255,.8)">
+        • 快<br>
+        • 节省内存<br>
+        • 只复制被修改的那一小块
+      </div>
+    </div>
+  </div>
+  <div class="callout-v2" style="margin-top:2vh;border-left-color:var(--accent-bright);background:rgba(255,255,255,.04)">
+    Linux 内核的 fork 就是用 COW 实现的，我们完整还原了这个机制。
+    <span class="cite">Linux Kernel Design Pattern</span>
+  </div>
+</div>
+</section>
+
+<!-- ======== 08 · COW 原理图 ======== -->
+<section class="slide light" data-animate="pipeline">
+<div class="canvas-card">
+  <div class="page-num-bg">08</div>
+  <div class="chrome-min tight">
+    <div class="l">08/16 · COW WORKFLOW</div>
+    <div class="r">THREE STEPS</div>
+  </div>
+  <div style="flex:1"></div>
+  <div data-anim="line" style="margin-bottom:2vh">
+    <div class="divider-accent"></div>
+    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.6vw,8.2vh);line-height:1.1;letter-spacing:-.025em">COW 工作流程</h2>
+  </div>
+  <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;flex:1;min-height:0">
+    <div class="step-item">
+      <div class="s-num">Step 1</div>
+      <div class="s-title">fork 前</div>
+      <div class="s-desc">父进程独占 3 个帧</div>
+      <div class="code-block" style="margin-top:1vh">
+        <div>父进程 → [帧0, 帧1, 帧2]</div>
+        <div style="color:var(--grey-3)">(独占)</div>
+      </div>
+    </div>
+    <div class="step-item" style="border-top-color:var(--accent)">
+      <div class="s-num" style="color:#27AE60">Step 2</div>
+      <div class="s-title">fork 后（零拷贝！）</div>
+      <div class="s-desc">父子进程共享同一份物理内存</div>
+      <div class="code-block" style="margin-top:1vh;border-left-color:#27AE60">
+        <div>父进程 → [帧0, 帧1, 帧2]</div>
+        <div>子进程 → [帧0, 帧1, 帧2]</div>
+        <div style="color:#27AE60;font-weight:600">ref_count = 2</div>
+      </div>
+    </div>
+    <div class="step-item" style="border-top-color:#E67E22">
+      <div class="s-num" style="color:#E67E22">Step 3</div>
+      <div class="s-title">写入时触发 COW</div>
+      <div class="s-desc">只复制被修改的那一帧</div>
+      <div class="code-block" style="margin-top:1vh;border-left-color:#E67E22">
+        <div>父进程 → [帧0, 帧1, 帧2]</div>
+        <div>子进程 → [<span style="color:#E67E22;font-weight:600">帧3</span>, 帧1, 帧2]</div>
+        <div style="color:var(--grey-3)">只复制了帧0</div>
+      </div>
+    </div>
+  </div>
+  <div class="callout-v2" style="margin-top:2vh">
+    只复制被修改的那一小块，节省 90% 的内存拷贝。
+    <span class="cite">Memory Efficiency</span>
+  </div>
+</div>
+</section>
+
+<!-- ======== 09 · 管道 IPC ======== -->
+<section class="slide grey" data-animate="four-cards">
+<div class="canvas-card">
+  <div class="page-num-bg">09</div>
+  <div class="chrome-min tight">
+    <div class="l">09/16 · INNOVATION #3</div>
+    <div class="r">PIPE IPC</div>
+  </div>
+  <div style="flex:1"></div>
+  <div data-anim="line" style="margin-bottom:2vh">
     <div class="divider-accent"></div>
     <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(3.8vw,6.8vh);line-height:1.1;letter-spacing:-.025em">管道进程间通信</h2>
   </div>
-  <div data-anim="up" style="display:grid;grid-template-columns:5fr 7fr;gap:2.5vw;min-height:0">
-    <div style="display:flex;flex-direction:column;min-height:0">
-      <div class="code-block" style="flex:1;overflow:hidden">
-        <div><span class="cmt"># kernel/ipc.py</span></div>
-        <div><span class="kw">class</span> <span class="fn">Pipe</span>:</div>
-        <div>    BUFFER_SIZE = <span class="num">4096</span></div>
-        <div style="margin-top:.3vh">&nbsp;</div>
-        <div>    <span class="kw">def</span> <span class="fn">write</span>(<span class="op">self</span>, data: bytes) -> int:</div>
-        <div>        <span class="str">"""写入管道缓冲区"""</span></div>
-        <div>        <span class="kw">for</span> byte <span class="kw">in</span> data:</div>
-        <div>            <span class="op">self</span>._buffer.append(byte)</div>
-        <div>        <span class="kw">return</span> <span class="fn">len</span>(data)</div>
-        <div style="margin-top:.3vh">&nbsp;</div>
-        <div>    <span class="kw">def</span> <span class="fn">read</span>(<span class="op">self</span>, size: int) -> bytes:</div>
-        <div>        <span class="str">"""从管道读取"""</span></div>
-        <div>        result = bytearray()</div>
-        <div>        <span class="kw">while</span> <span class="op">self</span>._buffer <span class="kw">and</span> <span class="fn">len</span>(result) < size:</div>
-        <div>            result.append(<span class="op">self</span>._buffer.popleft())</div>
-        <div>        <span class="kw">return</span> bytes(result)</div>
-      </div>
+  <div data-anim="up" style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:1.5vw;align-items:center">
+    <div class="card-e" style="text-align:center;padding:3vh 2vw">
+      <div style="font-size:2.5vw;margin-bottom:1vh">📤</div>
+      <div style="font-weight:600;font-size:max(16px,1.3vw)">父进程</div>
+      <div style="font-family:var(--mono);font-size:max(11px,.82vw);opacity:.6;margin-top:.6vh">write(4, data)</div>
     </div>
-    <div style="display:flex;flex-direction:column;gap:1.6vh;min-height:0">
-      <div style="font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;opacity:.55">EXECUTION FLOW</div>
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:1vw;align-items:start;padding:1.2vh 0;border-top:1px solid var(--border-subtle)">
-        <div class="s-num" style="color:var(--accent)">01</div>
-        <div><div style="font-weight:600;font-size:max(15px,1.2vw)">pipe()</div><div style="font-size:max(13px,1vw);opacity:.7;margin-top:.2vh">创建管道 → read_fd=3, write_fd=4</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:1vw;align-items:start;padding:1.2vh 0;border-top:1px solid var(--border-subtle)">
-        <div class="s-num" style="color:var(--accent)">02</div>
-        <div><div style="font-weight:600;font-size:max(15px,1.2vw)">fork()</div><div style="font-size:max(13px,1vw);opacity:.7;margin-top:.2vh">子进程继承文件描述符表</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:1vw;align-items:start;padding:1.2vh 0;border-top:1px solid var(--border-subtle)">
-        <div class="s-num" style="color:var(--accent)">03</div>
-        <div><div style="font-weight:600;font-size:max(15px,1.2vw)">write(fd=4, "Hello")</div><div style="font-size:max(13px,1vw);opacity:.7;margin-top:.2vh">父进程写入 → 内核缓冲区</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:1vw;align-items:start;padding:1.2vh 0;border-top:1px solid var(--border-subtle)">
-        <div class="s-num" style="color:var(--accent)">04</div>
-        <div><div style="font-weight:600;font-size:max(15px,1.2vw)">read(fd=3) → "Hello"</div><div style="font-size:max(13px,1vw);opacity:.7;margin-top:.2vh">子进程读取 ← 内核缓冲区</div></div>
-      </div>
-      <div style="font-family:var(--mono);font-size:max(12px,.92vw);line-height:1.7;color:var(--text-secondary);margin-top:auto;padding:1.4vh 1.6vw;border:1px solid var(--grey-2);background:var(--grey-1)">
-        <div style="opacity:.5;margin-bottom:.4vh">// 文件描述符表</div>
-        <div>父进程: fd=3<span style="color:var(--accent)">→read</span> fd=4<span style="color:#E67E22">→write</span></div>
-        <div>子进程: fd=3<span style="color:var(--accent)">→read</span> fd=4<span style="color:#E67E22">→write</span> <span style="opacity:.4">(继承)</span></div>
-      </div>
+    <div style="font-size:2.5vw;color:var(--accent)">→</div>
+    <div class="card-e" style="text-align:center;padding:3vh 2vw;border:2px solid var(--accent)">
+      <div style="font-size:2.5vw;margin-bottom:1vh">📦</div>
+      <div style="font-weight:600;font-size:max(16px,1.3vw)">管道</div>
+      <div style="font-family:var(--mono);font-size:max(11px,.82vw);opacity:.6;margin-top:.6vh">4KB 缓冲区</div>
+    </div>
+    <div style="font-size:2.5vw;color:var(--accent)">→</div>
+    <div class="card-e" style="text-align:center;padding:3vh 2vw">
+      <div style="font-size:2.5vw;margin-bottom:1vh">📥</div>
+      <div style="font-weight:600;font-size:max(16px,1.3vw)">子进程</div>
+      <div style="font-family:var(--mono);font-size:max(11px,.82vw);opacity:.6;margin-top:.6vh">read(3)</div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2vw;margin-top:2vh">
+    <div style="padding:1.5vh 1.5vw;background:var(--paper);border:1px solid var(--grey-2)">
+      <div style="font-weight:600;font-size:max(13px,1vw)">单向通信</div>
+      <div style="font-size:max(11px,.82vw);opacity:.6;margin-top:.3vh">一个读端，一个写端</div>
+    </div>
+    <div style="padding:1.5vh 1.5vw;background:var(--paper);border:1px solid var(--grey-2)">
+      <div style="font-weight:600;font-size:max(13px,1vw)">文件描述符</div>
+      <div style="font-size:max(11px,.82vw);opacity:.6;margin-top:.3vh">fd=3 读端，fd=4 写端</div>
+    </div>
+    <div style="padding:1.5vh 1.5vw;background:var(--paper);border:1px solid var(--grey-2)">
+      <div style="font-weight:600;font-size:max(13px,1vw)">fork 继承</div>
+      <div style="font-size:max(11px,.82vw);opacity:.6;margin-top:.3vh">子进程继承文件描述符表</div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- ======== 08 · 进程生命周期 ======== -->
-<section class="slide dark" data-layout="S05" data-animate="stack-build">
+<!-- ======== 10 · 六状态机 ======== -->
+<section class="slide dark" data-animate="stack-build">
 <div class="canvas-card">
-  <div class="page-num-bg" style="color:rgba(255,255,255,.04)">08</div>
+  <div class="page-num-bg" style="color:rgba(255,255,255,.04)">10</div>
   <div class="chrome-min tight" style="color:rgba(255,255,255,.62)">
-    <div class="l">09/14 · PROCESS LIFECYCLE</div>
+    <div class="l">10/16 · PROCESS LIFECYCLE</div>
     <div class="r">STATE MACHINE</div>
   </div>
   <div style="flex:1"></div>
@@ -651,7 +608,7 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
         <div>ZOMBIE → TERMINATED</div>
       </div>
       <div style="font-size:max(13px,1vw);opacity:.75;margin-top:auto;padding-top:1.2vh;border-top:1px solid rgba(255,255,255,.15)">
-        所有转换通过 <code style="color:var(--accent-bright);font-weight:600">set_state()</code> 验证合法性
+        所有转换通过 <code style="color:var(--accent-bright);font-weight:600">set_state()</code> 验证
       </div>
     </div>
     <div style="background:rgba(255,255,255,.06);padding:2.4vh 1.6vw;display:flex;flex-direction:column">
@@ -672,7 +629,6 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
         <div style="margin-bottom:1vh"><strong>安全机制:</strong></div>
         <div>• max_children = 64</div>
         <div>• 最大进程数 = 64</div>
-        <div>• PID 单调递增</div>
         <div>• init 不可杀死</div>
       </div>
       <div style="font-size:max(13px,1vw);opacity:.75;margin-top:auto;padding-top:1.2vh;border-top:1px solid rgba(255,255,255,.15)">
@@ -683,77 +639,100 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
 </div>
 </section>
 
-<!-- ======== 09 · 架构 ======== -->
-<section class="slide light" data-layout="S05" data-animate="stack-build">
+<!-- ======== 11 · DMESG ======== -->
+<section class="slide dark" data-animate="duo-mirror">
 <div class="canvas-card">
-  <div class="page-num-bg">09</div>
-  <div class="chrome-min tight">
-    <div class="l">10/14 · ARCHITECTURE</div>
-    <div class="r">5-LAYER DESIGN</div>
+  <div class="page-num-bg" style="color:rgba(255,255,255,.04)">11</div>
+  <div class="chrome-min tight" style="color:rgba(255,255,255,.62)">
+    <div class="l">11/16 · KERNEL LOG</div>
+    <div class="r">DMESG</div>
   </div>
   <div style="flex:1"></div>
-  <div data-anim="line" style="margin-bottom:1.6vh">
-    <div class="divider-accent"></div>
-    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4vw,7vh);line-height:1.1;letter-spacing:-.025em">五层分层架构</h2>
+  <div data-anim="line" style="margin-bottom:1.5vh">
+    <div class="t-cat" style="color:rgba(255,255,255,.62);letter-spacing:.22em;margin-bottom:.8vh">内核日志</div>
+    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(3.8vw,6.8vh);line-height:1.1;letter-spacing:-.02em;color:var(--paper)">dmesg — 操作可追溯</h2>
   </div>
-  <div data-anim="up" style="display:grid;grid-template-columns:1fr 1fr;gap:2vw;min-height:0">
-    <!-- 左：架构层级 -->
-    <div style="display:flex;flex-direction:column;gap:.5vh;justify-content:center">
-      <div style="display:grid;grid-template-columns:4em 1fr;gap:1vw;align-items:center;padding:1.6vh 1.8vw;background:var(--ink);color:var(--paper)">
-        <div class="t-cat" style="color:rgba(255,255,255,.4);font-size:10px">L05</div>
-        <div><div style="font-weight:500;font-size:max(15px,1.2vw)">用户交互层</div><div style="font-family:var(--mono);font-size:11px;opacity:.4;margin-top:.2vh">interactive.py</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:4em 1fr;gap:1vw;align-items:center;padding:1.6vh 1.8vw;background:var(--grey-1)">
-        <div class="t-cat" style="font-size:10px">L04</div>
-        <div><div style="font-weight:500;font-size:max(15px,1.2vw)">可视化引擎</div><div style="font-family:var(--mono);font-size:11px;opacity:.4;margin-top:.2vh">visualizer/</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:4em 1fr;gap:1vw;align-items:center;padding:1.8vh 1.8vw;background:var(--accent);color:var(--accent-on);position:relative">
-        <div style="position:absolute;left:0;top:0;bottom:0;width:3px;background:rgba(255,255,255,.3)"></div>
-        <div class="t-cat" style="color:rgba(255,255,255,.6);font-size:10px">L03</div>
-        <div><div style="font-weight:600;font-size:max(16px,1.3vw)">系统调用层</div><div style="font-family:var(--mono);font-size:11px;opacity:.55;margin-top:.2vh">syscall/syscall.py</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:4em 1fr;gap:1vw;align-items:center;padding:1.6vh 1.8vw;background:var(--grey-1)">
-        <div class="t-cat" style="font-size:10px">L02</div>
-        <div><div style="font-weight:500;font-size:max(15px,1.2vw)">内核核心层</div><div style="font-family:var(--mono);font-size:11px;opacity:.4;margin-top:.2vh">kernel/</div></div>
-      </div>
-      <div style="display:grid;grid-template-columns:4em 1fr;gap:1vw;align-items:center;padding:1.6vh 1.8vw;background:var(--ink);color:var(--paper)">
-        <div class="t-cat" style="color:rgba(255,255,255,.4);font-size:10px">L01</div>
-        <div><div style="font-weight:500;font-size:max(15px,1.2vw)">数据结构层</div><div style="font-family:var(--mono);font-size:11px;opacity:.4;margin-top:.2vh">core/</div></div>
+  <div data-anim="up" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5vw;flex:1;min-height:0">
+    <div style="display:flex;flex-direction:column;min-height:0">
+      <div class="code-block" style="border-left-color:var(--accent-bright);flex:1;overflow:hidden">
+        <div><span class="cmt"># 内核日志输出</span></div>
+        <div style="margin-top:.5vh">&nbsp;</div>
+        <div>[<span class="num">T=0</span>] <span class="fn">CREATE</span>&nbsp;&nbsp; pid=<span class="num">0</span> name=<span class="str">init</span></div>
+        <div>[<span class="num">T=1</span>] <span class="fn">CREATE</span>&nbsp;&nbsp; pid=<span class="num">1</span> name=<span class="str">shell</span></div>
+        <div>[<span class="num">T=2</span>] <span class="fn">FORK</span>&nbsp;&nbsp;&nbsp;&nbsp; pid=<span class="num">1</span> → pid=<span class="num">2</span></div>
+        <div>[<span class="num">T=3</span>] <span class="fn">SCHEDULE</span> pid=<span class="num">2</span> from=<span class="num">1</span></div>
+        <div>[<span class="num">T=4</span>] <span class="fn">WRITE</span>&nbsp;&nbsp;&nbsp; pid=<span class="num">2</span> fd=<span class="num">4</span> <span class="num">18</span>B</div>
+        <div>[<span class="num">T=5</span>] <span class="fn">READ</span>&nbsp;&nbsp;&nbsp;&nbsp; pid=<span class="num">2</span> fd=<span class="num">3</span> <span class="num">18</span>B</div>
+        <div>[<span class="num">T=6</span>] <span class="fn">EXIT</span>&nbsp;&nbsp;&nbsp;&nbsp; pid=<span class="num">2</span> code=<span class="num">0</span></div>
+        <div style="margin-top:.5vh">&nbsp;</div>
+        <div><span class="cmt"># 共 25 条日志</span></div>
       </div>
     </div>
-    <!-- 右：技术细节 -->
-    <div style="display:flex;flex-direction:column;gap:1.4vh;justify-content:center">
-      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;opacity:.45;margin-bottom:.4vh">IMPLEMENTATION DETAILS</div>
+    <div style="display:flex;flex-direction:column;gap:1.6vh;min-height:0">
+      <div style="font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.45)">FEATURES</div>
+      <div style="display:grid;grid-template-columns:6px 1fr;gap:1vw;align-items:start;padding:1vh 0;border-top:1px solid rgba(255,255,255,.1)">
+        <div style="width:6px;height:6px;background:var(--accent-bright);margin-top:.5vh;flex-shrink:0"></div>
+        <div><div style="font-weight:600;font-size:max(13px,1vw);color:var(--paper)">时间戳记录</div><div style="font-size:max(11px,.82vw);opacity:.55;margin-top:.2vh;line-height:1.5">每次操作都有精确的时间戳</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:6px 1fr;gap:1vw;align-items:start;padding:1vh 0;border-top:1px solid rgba(255,255,255,.1)">
+        <div style="width:6px;height:6px;background:var(--accent-bright);margin-top:.5vh;flex-shrink:0"></div>
+        <div><div style="font-weight:600;font-size:max(13px,1vw);color:var(--paper)">操作回放</div><div style="font-size:max(11px,.82vw);opacity:.55;margin-top:.2vh;line-height:1.5">出了问题可以回放找原因</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:6px 1fr;gap:1vw;align-items:start;padding:1vh 0;border-top:1px solid rgba(255,255,255,.1)">
+        <div style="width:6px;height:6px;background:var(--accent-bright);margin-top:.5vh;flex-shrink:0"></div>
+        <div><div style="font-weight:600;font-size:max(13px,1vw);color:var(--paper)">Linux 一致</div><div style="font-size:max(11px,.82vw);opacity:.55;margin-top:.2vh;line-height:1.5">和 Linux 的 dmesg 命令原理一致</div></div>
+      </div>
+      <div style="margin-top:auto;padding:1.4vh 1.6vw;border-left:3px solid var(--accent-bright);background:rgba(255,255,255,.04)">
+        <div style="font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.6;color:rgba(255,255,255,.85);font-style:italic">
+          每次 fork、调度、退出、写入，都有记录。出了问题可以回放找原因。
+        </div>
+        <div style="font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;opacity:.4;margin-top:.6vh">— /var/log/kmsg</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
 
-      <div style="padding:1.4vh 1.6vw;border-left:3px solid var(--accent);background:rgba(var(--accent-rgb),.03)">
-        <div style="font-weight:600;font-size:max(16px,1.3vw)">进程管理器 · ProcessManager</div>
-        <div style="font-family:var(--mono);font-size:max(12px,.92vw);opacity:.65;margin-top:.3vh;line-height:1.6">
-          PID 全局唯一分配 · 最大进程数限制(fork bomb防护)<br>
-          create_process() 7步流程: 检查上限→分配PID→创建PCB→注册进程树→注册调度器→分配页表→设READY
+<!-- ======== 12 · 两个核心算法 ======== -->
+<section class="slide split" data-animate="split-statement">
+<div class="canvas-card">
+  <div class="split-half">
+    <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden">
+      <canvas class="ascii-bg" aria-hidden="true"></canvas>
+      <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1;color:rgba(255,255,255,.62)">
+        <div class="l">12/16</div>
+        <div class="r">CORE ALGORITHMS</div>
+      </div>
+      <div style="flex:1"></div>
+      <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
+        <div class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em;margin-bottom:1.6vh">TWO CORE ALGORITHMS</div>
+        <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(7vw,12vh);line-height:.94;letter-spacing:-.025em;font-weight:200;color:#fff">Stride<span style="font-weight:100;opacity:.5">COW</span><br><span style="font-style:italic;font-weight:300">Scheduler</span></h2>
+        <div style="font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.6;color:rgba(255,255,255,.82);font-weight:300;max-width:36ch;margin-top:1.4vh">
+          用 Python 模拟 Linux 内核的两个核心算法，让学生直观理解操作系统原理。
         </div>
       </div>
-
-      <div style="padding:1.4vh 1.6vw;border-left:3px solid var(--accent);background:rgba(var(--accent-rgb),.03)">
-        <div style="font-weight:600;font-size:max(16px,1.3vw)">COW 内存管理 · COWManager</div>
-        <div style="font-family:var(--mono);font-size:max(12px,.92vw);opacity:.65;margin-top:.3vh;line-height:1.6">
-          PageTableEntry: frame_id + is_valid + is_writable + is_dirty + ref_count<br>
-          fork_page_table(): 复制PTE+设只读+incref · on_page_write(): COW触发+copy_frame
-        </div>
+      <div style="display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;position:relative;z-index:1">
+        <div class="t-meta" style="color:rgba(255,255,255,.62)">zavci team</div>
+        <div class="t-meta" style="color:rgba(255,255,255,.62)">2026.06</div>
       </div>
-
-      <div style="padding:1.4vh 1.6vw;border-left:3px solid var(--accent);background:rgba(var(--accent-rgb),.03)">
-        <div style="font-weight:600;font-size:max(16px,1.3vw)">Stride 调度器 · StrideScheduler</div>
-        <div style="font-family:var(--mono);font-size:max(12px,.92vw);opacity:.65;margin-top:.3vh;line-height:1.6">
-          最小堆 O(log n) 调度 · pass_value 溢出自动重置<br>
-          stride = 1,000,000 / (256 - priority) · update_after_run() 累加步长
+    </div>
+    <div class="half" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
+      <div class="chrome-min"><div class="l">TAKEAWAYS</div><div class="r">02 POINTS</div></div>
+      <div style="flex:1"></div>
+      <div data-anim="rules" style="display:flex;flex-direction:column;gap:0">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle)">
+          <div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9">01</div>
+          <div>
+            <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;margin-bottom:1vh">Stride 公平调度</h3>
+            <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;color:var(--text-secondary);font-weight:300">stride = BIG_STRIDE / (256 - priority)，用数学证明保证公平性，O(log n) 最小堆调度。</p>
+          </div>
         </div>
-      </div>
-
-      <div style="padding:1.4vh 1.6vw;border-left:3px solid var(--accent);background:rgba(var(--accent-rgb),.03)">
-        <div style="font-weight:600;font-size:max(16px,1.3vw)">IPC 管道 · IPCManager</div>
-        <div style="font-family:var(--mono);font-size:max(12px,.92vw);opacity:.65;margin-top:.3vh;line-height:1.6">
-          Pipe: 4KB环形缓冲区 · 阻塞读写 · fork时复制FD表<br>
-          fd=0,1,2保留stdin/stdout/stderr · 管道从fd=3开始分配
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent)">
+          <div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--accent)">02</div>
+          <div>
+            <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--accent);margin-bottom:1vh">COW 写时复制</h3>
+            <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;color:var(--text-secondary);font-weight:300">fork 时零内存拷贝，引用计数 + 脏页追踪 + 按需复制。节省 90% 的内存拷贝。</p>
+          </div>
         </div>
       </div>
     </div>
@@ -761,12 +740,12 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
 </div>
 </section>
 
-<!-- ======== 10 · 项目数据 ======== -->
-<section class="slide grey" data-layout="S06" data-animate="measure-up">
+<!-- ======== 13 · 项目数据 ======== -->
+<section class="slide grey" data-animate="measure-up">
 <div class="canvas-card">
-  <div class="page-num-bg">10</div>
+  <div class="page-num-bg">13</div>
   <div class="chrome-min tight">
-    <div class="l">11/14 · PROJECT METRICS</div>
+    <div class="l">13/16 · PROJECT METRICS</div>
     <div class="r">BY THE NUMBERS</div>
   </div>
   <div style="flex:1"></div>
@@ -796,7 +775,6 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
       <div class="s-note">完整交互式 Shell</div>
     </div>
   </div>
-  <!-- 模块 breakdown -->
   <div style="margin-top:2.5vh;padding-top:1.4vh;border-top:1px solid var(--grey-2);flex:1;min-height:0">
     <div style="font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.4;margin-bottom:.8vh">MODULE BREAKDOWN</div>
     <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:1vw">
@@ -825,154 +803,74 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
 </div>
 </section>
 
-<!-- ======== 11 · 三个创新点 ======== -->
-<section class="slide split" data-layout="S10" data-animate="split-statement">
+<!-- ======== 14 · 三个核心创新点 ======== -->
+<section class="slide light" data-animate="four-cards">
 <div class="canvas-card">
-  <div class="split-half">
-    <div class="half b-accent" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between;position:relative;overflow:hidden">
-      <canvas class="ascii-bg" aria-hidden="true"></canvas>
-      <div class="chrome-min" style="margin-bottom:0;position:relative;z-index:1;color:rgba(255,255,255,.62)">
-        <div class="l">12/14</div>
-        <div class="r">INNOVATIONS</div>
-      </div>
-      <div style="flex:1"></div>
-      <div data-anim="manifesto" style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
-        <div class="t-meta" style="color:rgba(255,255,255,.78);letter-spacing:.22em;margin-bottom:1.6vh">THREE INNOVATIONS</div>
-        <h2 style="font-family:var(--sans),var(--sans-zh);font-size:min(7vw,12vh);line-height:.94;letter-spacing:-.025em;font-weight:200;color:#fff">三个核心<br><span style="font-style:italic;font-weight:300">创新点</span></h2>
-        <div style="font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.6;color:rgba(255,255,255,.82);font-weight:300;max-width:36ch;margin-top:1.4vh">
-          用 Python 模拟 Linux 内核的进程管理机制，让学生直观理解操作系统原理。
-        </div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:end;border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;position:relative;z-index:1">
-        <div class="t-meta" style="color:rgba(255,255,255,.62)">zavci team</div>
-        <div class="t-meta" style="color:rgba(255,255,255,.62)">2026.06</div>
-      </div>
-    </div>
-    <div class="half" style="padding:5.6vh 3.6vw 4.4vh;justify-content:space-between">
-      <div class="chrome-min"><div class="l">TAKEAWAYS</div><div class="r">03 POINTS</div></div>
-      <div style="flex:1"></div>
-      <div data-anim="rules" style="display:flex;flex-direction:column;gap:0">
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle)">
-          <div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9">01</div>
-          <div>
-            <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;margin-bottom:1vh">COW 写时复制</h3>
-            <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;color:var(--text-secondary);font-weight:300">fork 时零内存拷贝，引用计数 + 脏页追踪 + 按需复制。与 Linux 内核 copy_on_write() 设计一致。</p>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle)">
-          <div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9">02</div>
-          <div>
-            <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;margin-bottom:1vh">Stride 公平调度</h3>
-            <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;color:var(--text-secondary);font-weight:300">基于 Linux CFS 的数学基础，O(log n) 最小堆调度，优先级比例精确可控，pass_value 溢出自动重置。</p>
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:2vw;align-items:start;padding:2.6vh 0;border-top:1px solid var(--border-subtle);border-bottom:2px solid var(--accent)">
-          <div style="font-family:var(--sans);font-weight:200;font-size:min(4.4vw,7.8vh);line-height:.9;color:var(--accent)">03</div>
-          <div>
-            <h3 style="font-family:var(--sans),var(--sans-zh);font-weight:400;font-size:max(18px,1.8vw);line-height:1.2;letter-spacing:-.015em;color:var(--accent);margin-bottom:1vh">完整进程生命周期</h3>
-            <p style="font-family:var(--sans),var(--sans-zh);font-size:max(12px,.92vw);line-height:1.6;color:var(--text-secondary);font-weight:300">六状态机 + 级联退出 + 孤儿回收 + 僵尸清理 + fork bomb 防护。覆盖进程管理全链路。</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<!-- ======== 12 · FUTURE WORK ======== -->
-<section class="slide light" data-layout="S19" data-animate="four-cards">
-<div class="canvas-card">
-  <div class="page-num-bg">12</div>
+  <div class="page-num-bg">14</div>
   <div class="chrome-min tight">
-    <div class="l">13/14 · FUTURE WORK</div>
-    <div class="r">ROADMAP</div>
+    <div class="l">14/16 · INNOVATIONS</div>
+    <div class="r">THREE POINTS</div>
   </div>
   <div style="flex:1"></div>
   <div data-anim="line" style="margin-bottom:3vh">
     <div class="divider-accent"></div>
-    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.6vw,8.2vh);line-height:1.1;letter-spacing:-.025em">后续扩展方向</h2>
+    <h2 style="font-family:var(--sans),var(--sans-zh);font-weight:200;font-size:min(4.6vw,8.2vh);line-height:1.1;letter-spacing:-.025em">三个核心创新</h2>
   </div>
   <div data-anim="up" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.6vw;align-content:end">
-    <div class="card-e">
+    <div class="card-e" style="border-top:3px solid var(--accent)">
       <span class="card-num">01</span>
-      <div class="card-icon"><i data-lucide="zap" style="width:1.6vw;height:1.6vw;stroke-width:1.6"></i></div>
-      <div class="t-cat accent" style="margin-bottom:.4vh">缺页中断</div>
-      <div style="font-weight:600;font-size:max(15px,1.2vw);line-height:1.2">实现缺页中断机制</div>
-      <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">让 COW 更真实：访问未映射页时触发中断，按需分配物理帧，支持页面置换算法。</div>
+      <div style="font-family:var(--sans);font-weight:200;font-size:3vw;color:var(--accent);line-height:1;margin-bottom:1.6vh">01</div>
+      <div style="font-weight:600;font-size:max(16px,1.3vw);line-height:1.2;margin-bottom:1vh">COW 写时复制</div>
+      <div style="font-size:max(12px,.92vw);line-height:1.6;opacity:.6">fork 时零内存拷贝，引用计数 + 脏页追踪 + 按需复制。与 Linux 内核 copy_on_write() 设计一致。</div>
     </div>
-    <div class="card-e">
+    <div class="card-e" style="border-top:3px solid var(--accent)">
       <span class="card-num">02</span>
-      <div class="card-icon"><i data-lucide="layers" style="width:1.6vw;height:1.6vw;stroke-width:1.6"></i></div>
-      <div class="t-cat accent" style="margin-bottom:.4vh">多级页表</div>
-      <div style="font-weight:600;font-size:max(15px,1.2vw);line-height:1.2">实现多级页表</div>
-      <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">二级页表 + TLB 快表，更接近真实内核的内存管理方式。</div>
+      <div style="font-family:var(--sans);font-weight:200;font-size:3vw;color:var(--accent);line-height:1;margin-bottom:1.6vh">02</div>
+      <div style="font-weight:600;font-size:max(16px,1.3vw);line-height:1.2;margin-bottom:1vh">Stride 公平调度</div>
+      <div style="font-size:max(12px,.92vw);line-height:1.6;opacity:.6">基于 Linux CFS 的数学基础，O(log n) 最小堆调度，优先级比例精确可控，pass_value 溢出自动重置。</div>
     </div>
-    <div class="card-e">
+    <div class="card-e" style="border-top:3px solid var(--accent);border-bottom:2px solid var(--accent)">
       <span class="card-num">03</span>
-      <div class="card-icon"><i data-lucide="share-2" style="width:1.6vw;height:1.6vw;stroke-width:1.6"></i></div>
-      <div class="t-cat accent" style="margin-bottom:.4vh">更多 IPC</div>
-      <div style="font-weight:600;font-size:max(15px,1.2vw);line-height:1.2">扩展 IPC 机制</div>
-      <div style="font-size:max(11px,.82vw);line-height:1.5;opacity:.6;margin-top:.6vh">共享内存、消息队列、信号量。支持更复杂的进程间协作模式。</div>
+      <div style="font-family:var(--sans);font-weight:200;font-size:3vw;color:var(--accent);line-height:1;margin-bottom:1.6vh">03</div>
+      <div style="font-weight:600;font-size:max(16px,1.3vw);line-height:1.2;margin-bottom:1vh;color:var(--accent)">完整进程生命周期</div>
+      <div style="font-size:max(12px,.92vw);line-height:1.6;opacity:.6">六状态机 + 级联退出 + 孤儿回收 + 僵尸清理 + fork bomb 防护。覆盖进程管理全链路。</div>
     </div>
   </div>
 </div>
 </section>
 
-<!-- ======== 13 · THANKS ======== -->
-<section class="slide accent" data-layout="S09" data-animate="hero">
+<!-- ======== 15 · Q&A ======== -->
+<section class="slide accent" data-animate="hero">
 <div class="canvas-card">
   <canvas class="ascii-bg" aria-hidden="true"></canvas>
-  <!-- 蓝底装饰艺术字 -->
-  <div class="art-text" style="top:8vh;left:6vw;font-size:18vw;opacity:.03;transform:rotate(-8deg)">THX</div>
+  <div class="art-text" style="top:8vh;left:6vw;font-size:18vw;opacity:.03;transform:rotate(-8deg)">Q&A</div>
   <div class="art-text" style="bottom:12vh;right:8vw;font-size:12vw;opacity:.025;transform:rotate(5deg)">谢谢</div>
-  <div class="art-text" style="top:50%;left:50%;font-size:22vw;opacity:.02;transform:translate(-50%,-50%) rotate(-3deg)">PROC</div>
 
   <div class="corner-mark tl" style="border-color:rgba(255,255,255,.25)"></div>
-  <div class="corner-mark tr" style="border-color:rgba(255,255,255,.25)"></div>
-  <div class="corner-mark bl" style="border-color:rgba(255,255,255,.25)"></div>
   <div class="corner-mark br" style="border-color:rgba(255,255,255,.25)"></div>
-  <div class="page-num-bg" style="color:rgba(255,255,255,.06)">14</div>
+  <div class="page-num-bg" style="color:rgba(255,255,255,.06)">15</div>
   <div class="chrome-min" style="color:rgba(255,255,255,.62)">
-    <div class="l">14/14 · THANKS</div>
-    <div class="r">PROCGRSIM</div>
+    <div class="l">15/16 · Q&A</div>
+    <div class="r">STRIDECOWSCHEDULER</div>
   </div>
-  <div style="flex:1;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:center">
-    <!-- 左：大字 Thanks -->
-    <div style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
-      <h1 data-anim="title" style="font-family:var(--sans);font-weight:100;font-size:min(9vw,15vh);line-height:.9;letter-spacing:-.04em;color:#fff;margin:0">Thanks!</h1>
-      <div style="display:flex;align-items:center;gap:1.2vw">
-        <div style="width:48px;height:2px;background:rgba(255,255,255,.35)"></div>
-        <span style="font-family:var(--sans-zh);font-weight:300;font-size:min(2.2vw,3.8vh);letter-spacing:.15em;color:rgba(255,255,255,.75)">谢谢！</span>
-      </div>
-      <p data-anim="lead" style="font-family:var(--sans),var(--sans-zh);font-weight:300;font-size:1.3vw;line-height:1.5;opacity:.65;color:rgba(255,255,255,.8);max-width:36ch">
-        感谢各位老师的聆听<br>欢迎指导与交流
-      </p>
-      <a href="https://gitee.com/zjh3432512933/process-management" target="_blank" style="display:inline-flex;align-items:center;gap:.5vw;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.7);text-decoration:none;letter-spacing:.08em;margin-top:1.5vh;padding:0.8vh 1.2vw;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);transition:all .2s">
-        <i data-lucide="external-link" style="width:1vw;height:1vw;stroke:currentColor;stroke-width:1.6"></i>
-        gitee.com/zjh3432512933/process-management
-      </a>
+  <div style="flex:1;padding:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:3vh">
+    <h1 data-anim="title" style="font-family:var(--sans);font-weight:100;font-size:min(12vw,20vh);line-height:.9;letter-spacing:-.04em;color:#fff;margin:0">Q & A</h1>
+    <div style="display:flex;align-items:center;gap:1.6vw">
+      <div style="width:60px;height:2px;background:rgba(255,255,255,.35)"></div>
+      <span style="font-family:var(--sans-zh);font-weight:300;font-size:min(2.6vw,4.4vh);letter-spacing:.2em;color:rgba(255,255,255,.8)">请老师们提问</span>
+      <div style="width:60px;height:2px;background:rgba(255,255,255,.35)"></div>
     </div>
-    <!-- 右：代码输出 "谢谢" + 打字机动画 -->
-    <div style="display:flex;flex-direction:column;gap:1.6vh;align-self:center;position:relative;z-index:1">
-      <div style="background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);border-radius:0;padding:2.4vh 2vw;font-family:var(--mono);font-size:max(12px,.92vw);line-height:1.9;color:rgba(255,255,255,.85)">
-        <div class="type-line l1" style="opacity:.4"># proc_mgr_sim output</div>
-        <div class="type-line l2"><span style="color:#82aaff">def</span> <span style="color:#c3e88d">main</span>():</div>
-        <div class="type-line l3">&nbsp;&nbsp;&nbsp;&nbsp;kernel = <span style="color:#82aaff">Kernel</span>(max_processes=<span style="color:#f78c6c">64</span>)</div>
-        <div class="type-line l4">&nbsp;&nbsp;&nbsp;&nbsp;shell = <span style="color:#82aaff">OSShell</span>(kernel)</div>
-        <div class="type-line l5">&nbsp;&nbsp;&nbsp;&nbsp;shell.<span style="color:#c3e88d">run</span>()</div>
-        <div class="type-line l6" style="margin-top:.4vh">&nbsp;</div>
-        <div class="type-line l7" style="opacity:.4"># output:</div>
-        <div class="type-line l8 cursor" style="color:#c3e88d;font-weight:600">print(<span style="color:#89ddff">"</span><span style="color:#c3e88d">谢谢！</span><span style="color:#89ddff">"</span>)</div>
-        <div class="type-result" style="margin-top:.6vh;border-top:1px solid rgba(255,255,255,.1);padding-top:.6vh">
-          谢谢！
-        </div>
-      </div>
-    </div>
+    <p data-anim="lead" style="font-family:var(--sans),var(--sans-zh);font-weight:300;font-size:1.3vw;line-height:1.5;opacity:.65;color:rgba(255,255,255,.8);max-width:36ch">
+      感谢各位老师的聆听<br>欢迎指导与交流
+    </p>
+    <a href="https://gitee.com/zjh3432512933/process-management" target="_blank" style="display:inline-flex;align-items:center;gap:.5vw;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.7);text-decoration:none;letter-spacing:.08em;margin-top:1.5vh;padding:0.8vh 1.2vw;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);transition:all .2s">
+      gitee.com/zjh3432512933/process-management
+    </a>
   </div>
   <div data-anim="bottom" style="border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;display:flex;justify-content:space-between;align-items:end">
     <div class="tag-g">
-      <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">COW</span>
       <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">Stride</span>
+      <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">COW</span>
       <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">Pipe IPC</span>
       <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">级联退出</span>
     </div>
@@ -983,6 +881,12 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
 
 </div>
 <div id="nav"></div>
+
+<script>
+if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))document.body.classList.add('is-win');
+(function(){const K='ppt-lp';const r=matchMedia('(prefers-reduced-motion:reduce)').matches;const s=localStorage.getItem(K);window.__lp=s==='1'||(s===null&&r);function u(){const h=document.getElementById('hint');if(h)h.textContent=`← → · B ${window.__lp?'动态':'静态'} · ESC 索引`}window.__setLP=function(on,o={}){window.__lp=!!on;document.body.classList.toggle('low-power',window.__lp);if(o.persist!==false)localStorage.setItem(K,window.__lp?'1':'0');if(window.__lp&&document.getAnimations)document.getAnimations().forEach(a=>a.cancel());u();dispatchEvent(new CustomEvent('lp-change',{detail:{on:window.__lp}}));if(window.__ps)window.__ps(window.__ci||0)};document.body.classList.toggle('low-power',window.__lp);addEventListener('DOMContentLoaded',u,{once:true});
+</script>
+<canvas id="bg-grid" class="bg"></canvas>
 
 <script>
 const VS=`attribute vec2 position;void main(){gl_Position=vec4(position,0.0,1.0);}`;
