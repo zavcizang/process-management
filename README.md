@@ -101,7 +101,7 @@ ProcMgrSim 是一个**用户态内核模拟器**，在 Python 中完整还原了
 |------|------|
 | 代码行数 | 5000+ 行 |
 | 测试用例 | 40+ 个 |
-| 演示脚本 | 6 个 |
+| 演示脚本 | 9 个 |
 | 交互命令 | 15+ 个 |
 | 可视化图表 | 6 种 |
 
@@ -143,6 +143,9 @@ python demos/stride_demo.py
 python demos/zombie_demo.py
 python demos/orphan_demo.py
 python demos/pipe_demo.py
+python demos/visualization_demo.py
+python demos/error_handling_demo.py
+python demos/performance_demo.py
 ```
 
 ## 项目结构
@@ -182,7 +185,10 @@ process_management/
 │   ├── orphan_demo.py          # 孤儿进程回收演示
 │   ├── pipe_demo.py            # 管道 IPC 演示
 │   ├── stride_demo.py          # Stride 调度公平性演示
-│   └── zombie_demo.py          # 僵尸进程演示
+│   ├── zombie_demo.py          # 僵尸进程演示
+│   ├── visualization_demo.py   # 可视化图表演示
+│   ├── error_handling_demo.py  # 错误处理演示
+│   └── performance_demo.py     # 性能对比演示
 │
 ├── tests/                       # 测试（40+ 测试用例）
 │   ├── __init__.py

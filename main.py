@@ -108,6 +108,10 @@ def run_demo(demo_name: str):
         'stride': 'demos/stride_demo.py',
         'zombie': 'demos/zombie_demo.py',
         'orphan': 'demos/orphan_demo.py',
+        'pipe': 'demos/pipe_demo.py',
+        'visualization': 'demos/visualization_demo.py',
+        'error': 'demos/error_handling_demo.py',
+        'performance': 'demos/performance_demo.py',
     }
 
     if demo_name not in demos:
