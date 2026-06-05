@@ -378,7 +378,7 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
         <div style="width:6px;height:6px;background:#E67E22;margin-top:.5vh;flex-shrink:0"></div>
         <div><div style="font-weight:600;font-size:max(13px,1vw);color:var(--paper)">大步长 → 少 CPU</div><div style="font-size:max(11px,.82vw);opacity:.55;margin-top:.2vh;line-height:1.5">priority 越大，stride 越大，pass_value 增长越快，被选中次数越少</div></div>
       </div>
-      <div style="margin-top:auto;padding:1.4vh 1.6vw;border-left:3px solid var(--accent-bright);background:rgba(255,255,255,.04)">
+      <div style="padding:1.4vh 1.6vw;border-left:3px solid var(--accent-bright);background:rgba(255,255,255,.04)">
         <div style="font-family:var(--sans),var(--sans-zh);font-size:max(13px,1vw);line-height:1.6;color:rgba(255,255,255,.85);font-style:italic">
           这不是靠经验调优，是靠数学公式保证的公平性。
         </div>
@@ -839,38 +839,60 @@ if(/Win/i.test(navigator.platform||navigator.userAgentData?.platform||''))docume
 </div>
 </section>
 
-<!-- ======== 15 · Q&A ======== -->
+<!-- ======== 15 · THANKS ======== -->
 <section class="slide accent" data-animate="hero">
 <div class="canvas-card">
   <canvas class="ascii-bg" aria-hidden="true"></canvas>
-  <div class="art-text" style="top:8vh;left:6vw;font-size:18vw;opacity:.03;transform:rotate(-8deg)">Q&A</div>
+  <!-- 蓝底装饰艺术字 -->
+  <div class="art-text" style="top:8vh;left:6vw;font-size:18vw;opacity:.03;transform:rotate(-8deg)">THX</div>
   <div class="art-text" style="bottom:12vh;right:8vw;font-size:12vw;opacity:.025;transform:rotate(5deg)">谢谢</div>
+  <div class="art-text" style="top:50%;left:50%;font-size:22vw;opacity:.02;transform:translate(-50%,-50%) rotate(-3deg)">PROC</div>
 
   <div class="corner-mark tl" style="border-color:rgba(255,255,255,.25)"></div>
+  <div class="corner-mark tr" style="border-color:rgba(255,255,255,.25)"></div>
+  <div class="corner-mark bl" style="border-color:rgba(255,255,255,.25)"></div>
   <div class="corner-mark br" style="border-color:rgba(255,255,255,.25)"></div>
   <div class="page-num-bg" style="color:rgba(255,255,255,.06)">15</div>
   <div class="chrome-min" style="color:rgba(255,255,255,.62)">
-    <div class="l">15/16 · Q&A</div>
+    <div class="l">15/16 · THANKS</div>
     <div class="r">STRIDECOWSCHEDULER</div>
   </div>
-  <div style="flex:1;padding:0;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:3vh">
-    <h1 data-anim="title" style="font-family:var(--sans);font-weight:100;font-size:min(12vw,20vh);line-height:.9;letter-spacing:-.04em;color:#fff;margin:0">Q & A</h1>
-    <div style="display:flex;align-items:center;gap:1.6vw">
-      <div style="width:60px;height:2px;background:rgba(255,255,255,.35)"></div>
-      <span style="font-family:var(--sans-zh);font-weight:300;font-size:min(2.6vw,4.4vh);letter-spacing:.2em;color:rgba(255,255,255,.8)">请老师们提问</span>
-      <div style="width:60px;height:2px;background:rgba(255,255,255,.35)"></div>
+  <div style="flex:1;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:4vw;align-items:center">
+    <!-- 左：大字 Thanks -->
+    <div style="display:flex;flex-direction:column;gap:2vh;position:relative;z-index:1">
+      <h1 data-anim="title" style="font-family:var(--sans);font-weight:100;font-size:min(9vw,15vh);line-height:.9;letter-spacing:-.04em;color:#fff;margin:0">Thanks!</h1>
+      <div style="display:flex;align-items:center;gap:1.2vw">
+        <div style="width:48px;height:2px;background:rgba(255,255,255,.35)"></div>
+        <span style="font-family:var(--sans-zh);font-weight:300;font-size:min(2.2vw,3.8vh);letter-spacing:.15em;color:rgba(255,255,255,.75)">谢谢！</span>
+      </div>
+      <p data-anim="lead" style="font-family:var(--sans),var(--sans-zh);font-weight:300;font-size:1.3vw;line-height:1.5;opacity:.65;color:rgba(255,255,255,.8);max-width:36ch">
+        感谢各位老师的聆听<br>欢迎指导与交流
+      </p>
+      <a href="https://gitee.com/zjh3432512933/process-management" target="_blank" style="display:inline-flex;align-items:center;gap:.5vw;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.7);text-decoration:none;letter-spacing:.08em;margin-top:1.5vh;padding:0.8vh 1.2vw;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);transition:all .2s">
+        gitee.com/zjh3432512933/process-management
+      </a>
     </div>
-    <p data-anim="lead" style="font-family:var(--sans),var(--sans-zh);font-weight:300;font-size:1.3vw;line-height:1.5;opacity:.65;color:rgba(255,255,255,.8);max-width:36ch">
-      感谢各位老师的聆听<br>欢迎指导与交流
-    </p>
-    <a href="https://gitee.com/zjh3432512933/process-management" target="_blank" style="display:inline-flex;align-items:center;gap:.5vw;font-family:var(--mono);font-size:12px;color:rgba(255,255,255,.7);text-decoration:none;letter-spacing:.08em;margin-top:1.5vh;padding:0.8vh 1.2vw;border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.06);transition:all .2s">
-      gitee.com/zjh3432512933/process-management
-    </a>
+    <!-- 右：代码输出 "谢谢" + 打字机动画 -->
+    <div style="display:flex;flex-direction:column;gap:1.6vh;align-self:center;position:relative;z-index:1">
+      <div style="background:rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.12);border-radius:0;padding:2.4vh 2vw;font-family:var(--mono);font-size:max(12px,.92vw);line-height:1.9;color:rgba(255,255,255,.85)">
+        <div class="type-line l1" style="opacity:.4"># proc_mgr_sim output</div>
+        <div class="type-line l2"><span style="color:#82aaff">def</span> <span style="color:#c3e88d">main</span>():</div>
+        <div class="type-line l3">&nbsp;&nbsp;&nbsp;&nbsp;kernel = <span style="color:#82aaff">Kernel</span>(max_processes=<span style="color:#f78c6c">64</span>)</div>
+        <div class="type-line l4">&nbsp;&nbsp;&nbsp;&nbsp;shell = <span style="color:#82aaff">OSShell</span>(kernel)</div>
+        <div class="type-line l5">&nbsp;&nbsp;&nbsp;&nbsp;shell.<span style="color:#c3e88d">run</span>()</div>
+        <div class="type-line l6" style="margin-top:.4vh">&nbsp;</div>
+        <div class="type-line l7" style="opacity:.4"># output:</div>
+        <div class="type-line l8 cursor" style="color:#c3e88d;font-weight:600">print(<span style="color:#89ddff">"</span><span style="color:#c3e88d">谢谢！</span><span style="color:#89ddff">"</span>)</div>
+        <div class="type-result" style="margin-top:.6vh;border-top:1px solid rgba(255,255,255,.1);padding-top:.6vh">
+          谢谢！
+        </div>
+      </div>
+    </div>
   </div>
   <div data-anim="bottom" style="border-top:1px solid rgba(255,255,255,.22);padding-top:2vh;display:flex;justify-content:space-between;align-items:end">
     <div class="tag-g">
-      <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">Stride</span>
       <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">COW</span>
+      <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">Stride</span>
       <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">Pipe IPC</span>
       <span class="tag-v" style="color:rgba(255,255,255,.4);border-color:rgba(255,255,255,.15)">级联退出</span>
     </div>
