@@ -96,9 +96,9 @@ class OSShell:
 
     def _cmd_fork(self, args: list):
         """fork [name] — 创建子进程"""
-        name = args[0] if args else f"child"
+        name = args[0] if args else None
 
-        result = self._kernel.syscall.sys_fork(self._current_pid)
+        result = self._kernel.syscall.sys_fork(self._current_pid, child_name=name)
 
         if isinstance(result, int) and result > 0:
             # 父进程
@@ -347,19 +347,46 @@ class OSShell:
         print(f"管道已创建: read_fd={read_fd}, write_fd={write_fd}")
 
     def _cmd_write(self, args: list):
-        """write <fd> <data> — 写入管道"""
+        """write <target> <data> — 写入管道或内存页（触发COW）"""
         if len(args) < 2:
-            print("用法: write <fd> <data>")
+            print("用法: write <fd|page> <data>")
             return
 
-        fd = int(args[0])
-        data = ' '.join(args[1:]).encode('utf-8')
+        target = int(args[0])
+        data = ' '.join(args[1:])
+        data_bytes = data.encode('utf-8')
 
-        try:
-            bytes_written = self._kernel.ipc_manager.write(fd, data)
-            print(f"写入 {bytes_written} 字节: {data.decode('utf-8')}")
-        except Exception as e:
-            print(f"写入失败: {e}")
+        # 优先尝试管道写入
+        fds = self._kernel.ipc_manager.get_process_fds(self._current_pid)
+        if target in fds:
+            try:
+                bytes_written = self._kernel.ipc_manager.write(target, data_bytes)
+                print(f"写入 {bytes_written} 字节: {data}")
+            except Exception as e:
+                print(f"写入失败: {e}")
+            return
+
+        # fallback：内存页写入（触发 COW 写时复制）
+        pcb = self._kernel.get_process(self._current_pid)
+        if pcb and pcb.page_table:
+            page_num = target
+            entry = pcb.page_table.get_entry(page_num)
+            if entry:
+                was_readonly = not entry.is_writable
+                try:
+                    cow_triggered = self._kernel.memory_manager.on_page_write(
+                        pcb.page_table, page_num)
+                except Exception as e:
+                    print(f"写入失败（内存不足）: {e}")
+                    return
+                if was_readonly and cow_triggered:
+                    print(f"写入 {len(data_bytes)} 字节到页 {page_num}: {data} (触发COW)")
+                else:
+                    print(f"写入 {len(data_bytes)} 字节到页 {page_num}: {data}")
+            else:
+                print(f"错误: 页 {page_num} 不存在")
+        else:
+            print(f"错误: 文件描述符 {target} 不存在")
 
     def _cmd_read(self, args: list):
         """read <fd> [size] — 读取管道"""

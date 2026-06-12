@@ -67,13 +67,16 @@ class StrideScheduler:
         self._total_ticks = 0
         self._schedule_count = 0
 
-    def register(self, pid: int, priority: int = 128) -> None:
+    def register(self, pid: int, priority: int = 128,
+                 initial_pass_value: float = None) -> None:
         """
         注册进程到调度器（创建进程时调用）。
 
         Args:
             pid: 进程 PID
             priority: 优先级 (0-255，越小越高)
+            initial_pass_value: 初始 pass_value（None 则设为当前最小值，
+                                 防止新进程获得不公平调度优势）
 
         Stride 计算：
             stride = BIG_STRIDE / (256 - priority)
@@ -86,10 +89,17 @@ class StrideScheduler:
         # 使用 256-priority 使得优先级越高（数值越小）stride 越小
         stride = BIG_STRIDE / max(256 - priority, 1)
 
+        # 新进程的初始 pass_value：若未指定，取当前所有进程的最小值
+        if initial_pass_value is None:
+            if self._registry:
+                initial_pass_value = min(e['pass_value'] for e in self._registry.values())
+            else:
+                initial_pass_value = 0.0
+
         self._registry[pid] = {
             'priority': priority,
             'stride': stride,
-            'pass_value': 0.0,
+            'pass_value': initial_pass_value,
             'cpu_time': 0,
         }
 
@@ -203,7 +213,14 @@ class StrideScheduler:
 
     def set_priority(self, pid: int, priority: int) -> None:
         """
-        设置进程优先级（同时更新 stride）。
+        设置进程优先级（同时更新 stride，并将 pass_value 重置为当前最小值）。
+
+        nice 改变优先级后，进程的 pass_value 应重置为当前所有进程中
+        的最小值，使其不会因之前以不同 stride 运行而永久受害或受益。
+        这样，优先级变更后的调度比例完全由新 stride 决定。
+
+        重要：重置 pass_value 后必须重建堆，否则堆中仍持有旧的 pass_value，
+        导致调度器选出过时的条目。
 
         Args:
             pid: 进程 PID
@@ -216,6 +233,18 @@ class StrideScheduler:
         entry = self._registry[pid]
         entry['priority'] = priority
         entry['stride'] = BIG_STRIDE / max(256 - priority, 1)
+
+        # 将 pass_value 重置为当前最小值，防止历史累积影响未来调度
+        if self._registry:
+            min_pass = min(e['pass_value'] for e in self._registry.values())
+            entry['pass_value'] = min_pass
+
+        # 重建堆：registry 中的 pass_value 变了，但堆中还是旧值
+        self._heap = [
+            (e['pass_value'], pid)
+            for pid, e in self._registry.items()
+        ]
+        heapq.heapify(self._heap)
 
     def get_queue_snapshot(self) -> List[Tuple[int, float]]:
         """

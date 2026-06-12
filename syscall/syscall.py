@@ -45,7 +45,7 @@ class SyscallHandler:
         """
         self._kernel = kernel
 
-    def sys_fork(self, parent_pid: int) -> int:
+    def sys_fork(self, parent_pid: int, child_name: str = None) -> int:
         """
         创建子进程。
 
@@ -59,6 +59,7 @@ class SyscallHandler:
 
         Args:
             parent_pid: 父进程 PID
+            child_name: 子进程名（None 则用 f"{parent.name}_child"）
 
         Returns:
             成功：子进程 PID（父进程收到）或 0（子进程收到）
@@ -75,8 +76,9 @@ class SyscallHandler:
 
         try:
             # 创建子进程
+            child_name = child_name or f"{parent.name}_child"
             child_pid = self._kernel.create_process(
-                name=f"{parent.name}_child",
+                name=child_name,
                 parent_pid=parent_pid,
                 priority=parent.priority,
             )

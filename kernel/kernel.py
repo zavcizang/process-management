@@ -96,8 +96,12 @@ class Kernel:
             parent_pid=-1,  # init 没有父进程
             priority=255,   # 最低优先级
         )
-        # init 进程特殊处理：直接设为 READY，不加入调度队列
+        # 为 init 分配初始物理页（4 页 = 16KB，模拟内核代码+数据段）
         init_pcb = self._process_manager.get_process(init_pid)
+        self._cow_manager.allocate_initial_pages(init_pcb.page_table, count=4)
+        # init 进程特殊处理：从调度队列中移除，不参与 CPU 调度
+        # init 只负责管理（回收僵尸进程），不消耗 CPU 时间
+        self._scheduler.remove(init_pid)
         init_pcb.set_state(ProcessState.READY)
 
     @property

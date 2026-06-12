@@ -398,6 +398,20 @@ class COWManager:
 
         return True
 
+    def allocate_initial_pages(self, pt: PageTable, count: int = 4) -> None:
+        """
+        为进程分配初始物理页（创建进程时调用）。
+
+        每个新进程默认分配 count 个物理帧，映射到虚拟页 0 ~ count-1。
+
+        Args:
+            pt: 进程的页表
+            count: 分配的物理页数（默认 4 页 = 16KB）
+        """
+        for page_num in range(count):
+            frame_id = self._fm.allocate()
+            pt.map(page_num, frame_id, is_writable=True)
+
     def release_all_frames(self, pt: PageTable) -> None:
         """
         释放页表中所有物理帧（进程退出时调用）。
